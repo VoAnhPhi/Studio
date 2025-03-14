@@ -1,0 +1,237 @@
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-top: 100px;
+
+    a {
+        @include text(16px, Lato-R, normal, null, null);
+        color: #d1d1d1;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    img {
+        margin: 0 4px;
+        width: 18px;
+        height: 18px;
+    }
+
+    span {
+        color: #ffdd00;
+        @include text(16px, Lato-R, normal, null, null);
+    }
+}
+
+.account-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.account-sidebar {
+    width: 330px;
+    padding: 24px 40px;
+    border-radius: 8px;
+
+    .profile-info {
+        text-align: center;
+        margin-bottom: 40px;
+
+        .profile-avatar {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin: 5px 0;
+            margin-bottom: 12px;
+            color: #00315c;
+            @include text(18px, Lato-B, normal, null, null);
+        }
+
+        p {
+            color: #707070;
+            @include text(16px, Lato-R, normal, null, null);
+        }
+    }
+
+    .account-menu-group {
+        width: 100%;
+        margin-top: 20px;
+
+        h3 {
+            color: #333;
+            margin-bottom: 10px;
+            @include text(18px, Lato-B, normal, null, null);
+        }
+
+        .account-item {
+            margin-bottom: 24px;
+        }
+
+        ul {
+            margin: 0 24px;
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 24px;
+                li:last-child {
+                    margin-bottom: 0;
+                }
+
+                a {
+                    text-decoration: none;
+                    @include text(16px, Lato-R, normal, null, null);
+                    color: #707070;
+                    display: flex;
+                    align-items: center;
+
+                    &:hover {
+                        color: #1d2a3b;
+                    }
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 10px;
+                    }
+                }
+
+                &.active a {
+                    color: #1d2a3b;
+                    display: inline-block;
+                    @include text(16px, Lato-B, normal, null, null);
+                    border-bottom: 1px solid #1d2a3b;
+                }
+            }
+        }
+    }
+
+    .account-item,
+    .order-menu-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        h3 {
+            @include text(18px, Lato-B, normal, null, null);
+            margin: 0;
+            color: #00315c;
+        }
+
+        img {
+            margin-left: 10px;
+        }
+    }
+}
+
+.account-content {
+    flex: 1;
+    background: #ffffff;
+    padding: 24px 0;
+
+    h1 {
+        @include text(32px, Lato-B, normal, null, null);
+        color: #00315c;
+        margin-bottom: 8px;
+    }
+
+    .custom-line {
+        width: 80px;
+        height: 3px;
+        background-color: #d1d1d1;
+        border: none;
+        margin: 0;
+        margin-bottom: 32px;
+    }
+
+    .profile-form {
+        display: grid;
+        gap: 24px;
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr; // Mặc định 2 cột
+            gap: 24px;
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+
+                label {
+                    @include text(18px, NS-B, normal, null, null);
+                    margin-bottom: 5px;
+                    color: #00315c;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 8px;
+                    height: 47px;
+                    @include text(16px, Lato-R, normal, null, null);
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+
+                    &:focus {
+                        border-color: #00315c;
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        .btn-update {
+            width: 180px;
+            height: 40px;
+            justify-self: flex-end;
+            padding: 10px 20px;
+
+            @include text(16px, Lato-B, normal, null, null);
+            color: #fff;
+            background-color: #00315c;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #ffdd00;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding-right: 8px;
+        padding-left: 8px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .account-content {
+        .profile-form {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+@media (max-width: 390px) {
+    .account-sidebar {
+        justify-content: center;
+        align-items: center; 
+    }
+}
+

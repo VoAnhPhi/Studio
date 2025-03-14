@@ -1,0 +1,235 @@
+.heading {
+    position: fixed;
+    @include size(100%, 76px);
+    background-color: #001F3B;
+    z-index: 10000;
+
+    .container {
+        @include mid(true);
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    &__nav {
+        width: calc(100% / 3);
+
+        &-menu {
+            @include mid(true);
+            justify-content: left;
+            column-gap: 18px;
+        }
+
+        &-mobileMenu {
+            display: none
+        }
+    }
+
+    &__logo {
+        @include size(70px, 70px);
+        overflow: hidden;
+        flex-shrink: 0;
+
+        a {
+            @include size(100%, 100%);
+            @include mid(true);
+            display: inline-flex;
+            background-color: #001F3B;
+        }
+    }
+
+    &__cta {
+        width: calc(100% / 3);
+        @include mid(true);
+        column-gap: 55px;
+
+        >img {
+            @include size(24px);
+        }
+
+        &-search {
+            flex: 1;
+            @include mid(true);
+            column-gap: 10px;
+            justify-content: flex-start;
+
+            input {
+                width: 160px;
+                border: none;
+                border-bottom: 1px solid $white-cl;
+                outline: none;
+                background-color: #001F3B;
+                color: $white-cl;
+            }
+        }
+
+        &-notice {
+            @include size(35px);
+
+            img {
+                @include size(100%);
+            }
+        }
+
+        &-user {
+            @include size(24px);
+        }
+    }
+}
+
+//Tablet
+@include sm {
+    .heading {
+        &__nav {
+            &-menu {
+                display: none;
+            }
+
+            &-mobileMenu {
+                display: block;
+            }
+        }
+
+        &__cta {
+            width: auto;
+            justify-content: unset;
+            column-gap: 8px;
+
+            &-notice,
+            &-user {
+                min-width: 24px;
+                min-height: 24px;
+            }
+        }
+    }
+
+    .services {
+        &__wrapper {
+            &-boxContent {
+                &:last-child {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .news {
+        .container {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+
+        &__content {
+            &:last-child {
+                display: none;
+            }
+        }
+    }
+}
+
+@include xs {
+    .heading {
+        &__cta {
+            &-search {
+                min-width: 24px;
+                min-height: 24px;
+
+                img {
+                    flex: 1;
+                }
+
+                input {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+// Sidebar
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: $btn-cl;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+@include xs {
+    .sidenav {
+        .top {
+            display: flex;
+            max-height: 65px;
+            height: 100%;
+            background-color: $white-cl;
+            margin-bottom: 25px;
+
+            img {
+                position: absolute;
+            }
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            row-gap: 25px;
+            padding-left: 30px;
+        }
+    }
+}
+
+.sidenav a {
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    right: 10px;
+    font-size: 36px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+
+@include sm {
+    .sidenav {
+        .top {
+            display: flex;
+            max-height: 65px;
+            height: 100%;
+            background-color: $white-cl;
+            margin-bottom: 25px;
+
+            img {
+                position: absolute;
+            }
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            row-gap: 25px;
+            padding-left: 30px;
+        }
+    }
+}

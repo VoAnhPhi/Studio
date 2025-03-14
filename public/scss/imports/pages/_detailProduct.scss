@@ -1,0 +1,520 @@
+.product_details {
+    padding-top: var(--ptop);
+
+    .link {
+        margin: 24px auto 28px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        img {
+            vertical-align: middle;
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    .banner {
+        position: relative;
+        width: calc(100% - 120px);
+        margin: 0 auto;
+        height: 650px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .swiper-pagination-bullet-active {
+            background-color: #000 !important;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+        }
+
+        .banner__details {
+            .banner-img {
+                width: 100%;
+                height: 650px;
+                object-fit: fill;
+                margin: 0 auto;
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            z-index: 3;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: $white-cl;
+            padding: 30px 80px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
+            -webkit-box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
+
+            p {
+                margin: 10px 0 0;
+
+                img {
+                    height: 100%;
+                    margin: -5px 6px 0 0;
+                    vertical-align: middle;
+                    margin-right: 6px;
+                }
+            }
+        }
+    }
+
+    .room-details {
+        display: flex;
+        gap: 30px;
+
+        .room {
+            display: flex;
+
+            .room__info {
+                margin-top: 24px;
+                padding-right: 20px;
+                flex: 0 0 58.333333%;
+                max-width: 58.333333%;
+
+                .room__info-title {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 30px;
+                }
+
+                .room-meta {
+                    margin-bottom: 30px;
+                }
+
+                .room-features {
+                    display: flex;
+                    gap: 20px;
+                    white-space: nowrap;
+                    margin-bottom: 30px;
+                }
+
+                .room-price {
+                    margin-bottom: 30px;
+                    display: flex;
+                    flex-direction: row-reverse;
+
+                    .currency {
+                        vertical-align: super;
+                        margin-left: 4px;
+                    }
+
+                    .per-date {
+                        display: contents;
+                        vertical-align: baseline;
+                    }
+                }
+
+                .description-block {
+                    margin-bottom: 48px;
+
+                    .title {
+                        margin-bottom: 30px;
+                    }
+
+                    .description {
+                        line-height: 1.4;
+                        margin-bottom: 24px;
+                    }
+                }
+
+                .amenities {
+                    h3 {
+                        margin-bottom: 30px;
+                    }
+
+                    ul {
+                        list-style: none;
+                        padding: 0;
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 30px;
+
+                        li {
+                            margin-left: 30px;
+
+                            img {
+                                height: 24px;
+                                vertical-align: middle;
+                            }
+
+                            span {
+                                padding-left: 8px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .booking {
+                padding-left: 20px;
+                flex: 0 0 41.666667%;
+                max-width: 41.666667%;
+
+                .booking-form {
+                    margin: 100px 0 50px;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+                    -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+                    -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+
+                    h2 {
+                        margin-bottom: 20px;
+                    }
+
+                    form {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+
+                        .input_flex {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            border: 1px solid #ddd;
+
+                            p {
+                                padding-left: 10px;
+                                text-align: center;
+                            }
+
+                            input {
+                                border: none;
+                                width: 45%;
+                            }
+                        }
+
+                        input,
+                        select {
+                            padding: 10px;
+                            height: 50px;
+                            width: 100%;
+                            border: 1px solid #ddd;
+                        }
+
+                        input, 
+                        select:focus {
+                            outline: none;
+                        }
+
+                        h2 {
+                            margin-bottom: 0px;
+                        }
+
+                        .form__adults {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            gap: 10px;
+                        }
+
+                        .button {
+                            display: flex;
+                            flex-direction: row-reverse;
+
+                            a {
+                                background-color: #FFDD00;
+                                display: inline-flex;
+                                padding: 10px 25px;
+                                border-radius: 100px;
+                                column-gap: 13px;
+                                align-items: center;
+
+                                img {
+                                    background-color: #FFC515;
+                                    padding: 7px;
+                                    border-radius: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .accordion-product {
+                    border: 1px solid #B3B3B3;
+                    overflow: hidden;
+                    background-color: #fff;
+                    background: rgba(255, 255, 255, 0.31);
+                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                    backdrop-filter: blur(0px);
+                    -webkit-backdrop-filter: blur(0px);
+                    border: 1px solid rgba(255, 255, 255, 1);
+
+                    .accordion-item {
+                        border-bottom: 1px solid #B3B3B3;
+
+                        &:last-child {
+                            border-bottom: none;
+                        }
+
+                        .accordion-header {
+                            background-color: #fff;
+                            padding: 15px;
+                            text-align: left;
+                            border: none;
+                            width: 100%;
+                            outline: none;
+                            cursor: pointer;
+                            display: flex;
+                            justify-content: space-between;
+                            transition: background-color 0.3s ease;
+
+                            &:hover {
+                                background-color: #f5f5f5;
+                            }
+
+                            &:after {
+                                content: '\002B';
+                                color: #777;
+                                font-weight: bold;
+                                float: right;
+                                margin-left: 5px;
+                            }
+
+                            &.active:after {
+                                content: "\2212";
+                            }
+                        }
+
+                        .accordion-content {
+                            padding-left: 15px;
+                            max-height: 0;
+                            overflow: hidden;
+                            transition: max-height 0.3s ease-out;
+
+                            p {
+                                margin-top: 15px;
+                            }
+
+                            p:last-child {
+                                margin-bottom: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .welcome-section {
+        margin-top: 100px;
+
+        .hr {
+            border-top: 1px solid;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .welcome-header {
+            text-align: center;
+            margin: 38px 0 60px 0;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+
+            .text-image-block {
+                display: flex;
+                gap: 100px;
+                flex-direction: row;
+
+                .text-block {
+                    flex: 1;
+
+                    h3 {
+                        margin-bottom: 16px;
+                    }
+                }
+
+                .text-block:last-child {
+                    flex: 1;
+                    text-align: right;
+                }
+
+                .image-block {
+                    flex: 0 0 600px;
+                    max-width: 100%;
+
+                    img {
+                        width: 600px;
+                        height: 400px;
+                        object-fit: cover;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    }
+                }
+            }
+        }
+    }
+
+    .studio-section {
+        margin-top: 100px;
+        text-align: center;
+        background-color: #ffffff;
+
+        .studio-title {
+            margin-bottom: 16px;
+        }
+
+        .studio-quote {
+            margin: 0 auto 30px;
+            margin-bottom: 30px;
+            width: 50%;
+        }
+
+        .studio-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .studio-description {
+            margin: 30px auto 0;
+            width: 70%;
+        }
+    }
+
+    .similar__studios {
+        margin-top: 100px;
+
+        .similar__studios-list {
+            h3 {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .swiper-hint-container {
+                display: flex;
+                margin: 0 auto;
+                max-width: calc(100% - 200px);
+                justify-content: center;
+
+
+                .swiper-hint-wrapper {
+                    display: flex;
+                    gap: 20px;
+
+                    .swiper-hint-slide {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .swiper-hint-slide:nth-child(2) img,
+                    .swiper-hint-slide:nth-child(4) img {
+                        width: 90%;
+                    }
+
+                    .swiper-hint-slide:first-child img,
+                    .swiper-hint-slide:last-child img {
+                        width: 80%;
+                    }
+
+                    .swiper-hint-slide:last-child {
+                        margin-left: -25px;
+                    }
+
+                    .swiper-hint-slide:first-child {
+                        margin-right: -25px;
+                    }
+
+
+                }
+            }
+        }
+    }
+
+    .support {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 100px auto 100px;
+
+        .title {
+            margin: 0 auto;
+            width: 50%;
+            height: 20%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            hr {
+                width: 50%;
+                height: 2px;
+                background-color: #333;
+                border: none;
+                margin: 16px auto 10px;
+            }
+
+            p {
+                text-align: center;
+                width: 60%;
+            }
+        }
+
+        .content {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+
+            nav {
+                ul {
+                    list-style: none;
+                    line-height: 62px;
+
+                    a {
+                        text-decoration: underline;
+
+                        li {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            img {
+                max-width: 55%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body .container {
+                display: flex;
+                justify-content: center;
+            }
+
+            width: 100%;
+
+            .title {
+                width: 80%;
+            }
+
+            .content {
+                gap: 20px;
+
+                img {
+                    max-width: 50%;
+                }
+            }
+        }
+    }
+
+}

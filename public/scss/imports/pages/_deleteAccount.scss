@@ -1,0 +1,59 @@
+.deleteAccount {
+    @include mid(true);
+    padding: 50px;
+    border-radius: 8px;
+    flex-direction: column;
+    position: relative;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    &__heading {
+        padding-bottom: 60px;
+    }
+
+    &__icon {
+        padding-bottom: 24px;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+        text-align: center;
+
+        .button {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            column-gap: 24px;
+            button {
+                background-color: #FF5E1F;
+                cursor: pointer;
+                padding: 12px 45px;
+                border: none;
+                color: $black-cl;
+                border-radius: 4px;
+
+                &.deny-btn {
+                    background-color: #FEF4F2;
+                }
+
+                &.submit-btn {
+                    background-color: #1D2A3B;
+                    color: $white-cl;
+                }
+            }
+        }
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 30px;
+        right: 45px;
+        cursor: pointer;
+    }
+}

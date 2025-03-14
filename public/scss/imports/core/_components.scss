@@ -1,0 +1,1049 @@
+// css img, button, heading, title, input, elements, components...
+img {
+    max-width: 100%;
+    height: auto;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    &.--center {
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+// colors (tuỳ chỉnh)
+.--white-cl {
+    color: $white-cl;
+}
+
+.--black-cl {
+    color: $black-cl;
+}
+
+.--blue-cl {
+    color: $blue-cl;
+}
+
+.--btn-cl {
+    color: $btn-cl;
+}
+
+
+
+// css article (nội dung chi tiết bài viết)
+article {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        // font-family: ib; // font bold
+        display: block;
+    }
+
+    h1 {
+        font-size: var(--h1-fs);
+        line-height: var(--h1-lh);
+        margin: 0 0 0.67rem 0;
+    }
+
+    h2 {
+        font-size: var(--h2-fs);
+        line-height: var(--h2-lh);
+        margin: 0 0 0.75rem 0;
+    }
+
+    h3 {
+        font-size: var(--h3-fs);
+        line-height: var(--h3-lh);
+        margin: 0 0 0.83rem 0;
+    }
+
+    h4 {
+        font-size: var(--h4-fs);
+        line-height: var(--h4-lh);
+        margin: 0 0 1.12rem 0;
+    }
+
+    h5 {
+        font-size: var(--h5-fs);
+        line-height: var(--h5-lh);
+        margin: 0 0 1.5rem 0;
+    }
+
+    h6 {
+        font-size: 0.67rem;
+        margin: 0 0 1.67rem 0;
+    }
+
+    p {
+        margin: 0 0 1.12rem 0;
+    }
+
+    strong {
+        // font-family: ib; // font bold
+    }
+
+    ol,
+    ul {
+        list-style: initial;
+        padding-left: 18px;
+    }
+
+    img {
+        display: inline-block;
+        height: auto;
+        overflow: hidden;
+        border-radius: 10px;
+        margin: 25px auto;
+    }
+
+    .video {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        position: relative;
+        margin: 25px auto;
+
+        iframe,
+        video {
+            position: absolute;
+            @include size(100%);
+            top: 0;
+            left: 0;
+        }
+    }
+
+    @include xs {
+        img {
+            margin: 20px auto;
+        }
+    }
+}
+
+section {
+    &.--ptop {
+        padding-top: $ptop;
+    }
+
+    &.--pbtm {
+        padding-bottom: $pbtm;
+    }
+}
+
+.heading {
+    &__nav {
+        &-menu {
+            li {
+                a {
+                    @include text(16px, Lato-SmB, null, $white-cl, null);
+                }
+            }
+
+        }
+    }
+}
+
+@include xs {
+    .heading {
+        &__nav {
+            &-mobileMenu {
+                .sidenav {
+                    ul {
+                        li {
+                            a {
+                                @include text(16px, Lato-SmB, null, $white-cl, null);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.banner {
+    &__img {
+        .swiper-slide {
+            h1 {
+                @include text(64px, Lato-B, normal, $primary-cl, null);
+            }
+        }
+
+        &-wrapper {
+            p {
+                @include text(20px, NS-R, normal, $white-cl, null);
+            }
+
+            a {
+                @include text(18px, Lato-SmB, normal, $white-cl, null);
+            }
+        }
+    }
+}
+
+@include xs {
+    .banner {
+        &__img {
+            .swiper-slide {
+                h1 {
+                    @include text(20px, Lato-B, normal, $primary-cl, null);
+                }
+            }
+
+            &-wrapper {
+                p {
+                    @include text(16px, NS-R, normal, $white-cl, null);
+                }
+
+                a {
+                    @include text(18px, Lato-SmB, normal, $white-cl, null);
+                }
+            }
+        }
+    }
+}
+
+.--title {
+    @include text(48px, Lato-B, normal, $btn-cl, null);
+}
+
+.services {
+    text-align: center;
+
+    &__wrapper {
+        &-boxContent {
+            .title {
+                @include text(24px, Lato-B, normal, $btn-cl, null);
+            }
+
+            .content {
+                @include text(16px, NS-B, normal, #B0B0B0, null);
+            }
+
+            .price {
+                &-title {
+                    @include text(16px, NS-B, normal, #757575, null);
+                }
+
+                &-label {
+                    @include text(30px, Lato-B, normal, $btn-cl, null);
+                }
+
+                &-sale {
+                    .discountPercent {
+                        @include text(50px, Lato-B, normal, #E92215, null);
+                    }
+                }
+
+                &-left {
+                    .price-mainprice {
+                        @include text(16px, NS-B, normal, #B0B0B0, null);
+
+                        .price-mainLabel {
+                            text-decoration: line-through;
+                        }
+                    }
+
+                    .price-pricesale {
+                        @include text(16px, NS-B, normal, $btn-cl, null);
+
+                        .price-label {
+                            @include text(20px, Lato-B, normal, $btn-cl, null);
+                        }
+                    }
+                }
+            }
+
+            .button {
+                a {
+                    @include text(18px, Lato-B, normal, $white-cl, null);
+                }
+            }
+        }
+    }
+}
+
+.news {
+    &__content {
+        &-heading {
+            .title {
+                @include text(48px, Lato-B, normal, $btn-cl, null);
+            }
+
+            .content {
+                @include text(16px, Lato-B, normal, $btn-cl, null);
+            }
+        }
+    }
+}
+
+.breadCrumb {
+    &__direction {
+        span {
+            &.--text {
+                @include text(16px, Lato-R, normal, $breadcrumb-cl, null);
+            }
+        }
+
+        .directionDestination {
+            color: #FFDD00 !important;
+        }
+    }
+}
+
+.detailNewsBanner {
+    &__content {
+        &-title {
+            @include text(40px, DC-SmB, normal, $btn-cl, null);
+        }
+
+        &-text {
+            @include text(16px, NS-R, normal, $btn-cl, null);
+        }
+    }
+}
+
+.compareProduct {
+    &__title {
+        &-content {
+            .paraConfig {
+                h3 {
+                    @include text(30px, Lato-B, normal, $btn-cl, null);
+                }
+
+                p {
+                    @include text(20px, NS-R, normal, $btn-cl, null);
+
+                    span {
+                        @include text(20px, NS-B, normal, $btn-cl, null);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.consider {
+    &__title {
+        // font-size: 32px !important;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    &__content {
+        p {
+            @include text(16px, NS-L, normal, $btn-cl, null);
+            text-align: center;
+        }
+    }
+}
+
+.support {
+    &__heading {
+        &-title {
+            text-align: center;
+        }
+
+        &-content {
+            @include text(22px, NS-R, normal, $btn-cl, null);
+            text-align: center;
+        }
+    }
+
+    &__content {
+        &-left {
+            ul {
+                li {
+                    a {
+                        @include text(20px, Lato-B, normal, $btn-cl, null);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.primary {
+    &__title {
+        &-description {
+            p {
+                @include text(18px, NS-R, normal, $btn-cl, null);
+            }
+        }
+    }
+
+    &__contact {
+        &-title {
+            @include text(24px, NS-B, normal, $btn-cl, null);
+        }
+
+        &-description {
+            @include text(16px, NS-M, normal, #687176, null);
+        }
+
+        &-form {
+            form {
+                label {
+                    @include text(16px, NS-B, normal, #687176, null);
+                }
+
+                input {
+                    @include text(16px, NS-R, normal, $black-cl, null);
+                    padding-left: 18px;
+                }
+
+                .phone {
+                    .prefix {
+                        @include text(16px, Lato-B, normal, $black-cl, null);
+                    }
+                }
+            }
+        }
+    }
+
+    &__utilities {
+        &-title {
+            @include text(24px, NS-B, normal, $btn-cl, null);
+        }
+
+        &-detail {
+            .checkBox {
+                form {
+                    label {
+                        @include text(16px, NS-M, normal, $black-cl, null);
+                    }
+                }
+
+                .descriptionInfo {
+                    @include text(16px, NS-M, normal, #687176, null);
+                }
+            }
+
+            .listInformation {
+                ul {
+                    li {
+                        @include text(16px, NS-M, normal, #687176, null);
+                    }
+                }
+
+                &-price {
+                    span {
+                        @include text(16px, NS-B, normal, $black-cl, null);
+                    }
+                }
+            }
+        }
+    }
+
+    &__paymentMethod {
+        &-title {
+            @include text(24px, NS-B, normal, $btn-cl, null);
+        }
+
+        &-description {
+            @include text(16px, NS-M, normal, #687176, null);
+        }
+
+        &-selectBox {
+            form {
+                >div {
+                    .selectRadio {
+                        label {
+                            @include text(16px, NS-R, normal, #00315C, null);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__couponCode {
+        &-labeling {
+            .title {
+                @include text(24px, NS-B, normal, $btn-cl, null);
+            }
+
+            .addButton {
+                a {
+                    @include text(20px, NS-B, normal, #009EFF, null);
+                }
+
+            }
+        }
+
+        &-input {
+            @include text(16px, NS-M, normal, $btn-cl, null);
+        }
+    }
+
+    &__detailPrice {
+        >* {
+            @include text(18px, NS-M, normal, $black-cl, null);
+        }
+
+        &-heading {
+            .title {
+                @include text(24px, NS-B, normal, $btn-cl, null);
+            }
+        }
+
+        &-alert {
+            @include text(16px, NS-M, normal, #009EFF, null);
+        }
+
+        &-price {
+            .title {
+                @include text(16px, NS-M, normal, $black-cl, null);
+
+                span {
+                    @include text(18px, NS-M, normal, $black-cl, null);
+                }
+            }
+
+            .detailRoom {
+                @include text(16px, NS-M, normal, #707070, null);
+            }
+        }
+
+        &-total {
+            @include text(26px, NS-B, normal, #FF5E1F, null);
+
+            span {
+                @include text(24px, NS-B, normal, $black-cl, null);
+            }
+        }
+
+        &-paymentBtn {
+            a {
+                @include text(20px, Lato-B, normal, $white-cl, null);
+            }
+        }
+    }
+}
+
+.advertisement {
+    &__wrapper {
+        &-heading {
+            p {
+                @include text(13px, NS-M, normal, $white-cl, null);
+            }
+        }
+
+        &-title {
+            @include text(20px, NS-B, normal, $black-cl, null);
+        }
+
+        &-descript {
+            @include text(16px, NS-M, normal, $black-cl, null);
+        }
+
+        &-rating {
+            .point {
+                @include text(16px, Lato-R, normal, $black-cl, null);
+            }
+
+            .totalComment {
+                @include text(16px, Lato-R, normal, #687176, null);
+            }
+
+            .recommend {
+                @include text(14px, Lato-R, normal, #00875A, null);
+            }
+        }
+
+        &-pickup {
+            text-align: center;
+
+            .pick-room {
+
+                .title,
+                .timePick {
+                    @include text(14px, NS-B, normal, #687176, null);
+                }
+
+                .calender {
+                    @include text(14px, NS-B, normal, $black-cl, null);
+                }
+            }
+
+            .duringTime {
+                @include text(14px, NS-B, normal, #687176, null);
+            }
+
+            .checkout {
+
+                .title,
+                .timeCheckOut {
+                    @include text(14px, NS-B, normal, #687176, null);
+                }
+
+                .calender {
+                    @include text(14px, NS-B, normal, $black-cl, null);
+                }
+            }
+        }
+
+        &-infoRoom {
+            .title {
+                @include text(14px, NS-B, normal, $black-cl, null);
+            }
+
+            .capacity,
+            .internet,
+            .ruleSmoke {
+                @include text(14px, NS-R, normal, #707070, null);
+            }
+        }
+
+        &-footing {
+            .wrapperRight {
+                .title {
+                    @include text(14px, NS-B, normal, $black-cl, null);
+                }
+
+                .mainPrice {
+                    @include text(14px, NS-M, normal, $black-cl, null);
+                    text-decoration: line-through;
+                }
+            }
+
+            .wrapperLeft {
+                .description {
+                    @include text(14px, NS-B, normal, #707070, null);
+                }
+
+                .lastPrice {
+                    @include text(20px, NS-B, normal, #FF5E1F, null);
+                }
+            }
+        }
+    }
+
+    &__privacy {
+        &-title {
+            @include text(20px, NS-B, normal, $black-cl, null);
+        }
+
+        &-role {
+            @include text(12px, NS-B, normal, $black-cl, null);
+        }
+
+        &-denyRoom {
+            @include text(13px, NS-B, normal, #00875A, null);
+        }
+
+        &-changeCalender {
+            @include text(13px, NS-B, normal, #00875A, null);
+        }
+
+        &-button {
+            a {
+                @include text(16px, NS-B, normal, #009EFF, null);
+            }
+        }
+    }
+}
+
+.contactTitle {
+    &__heading {
+        &-user {
+            @include text(18px, NS-B, normal, $black-cl, null);
+        }
+
+        &-title {
+            @include text(32px, NS-B, normal, $black-cl, null);
+        }
+    }
+}
+
+.mainContent {
+    &__left {
+        &-heading {
+            .title {
+                @include text(26px, NS-B, normal, $btn-cl, null);
+            }
+        }
+
+        &-working {
+            .timeWorking {
+                span {
+                    @include text(16px, NS-M, normal, #687176, null);
+                }
+            }
+
+            .phoneCalling,
+            .emailSending {
+                @include text(16px, NS-M, normal, $black-cl, null);
+            }
+        }
+
+        &-accordian {
+            button {
+                @include text(20px, NS-B, normal, $btn-cl, null);
+            }
+
+            .panel {
+                @include text(16px, NS-M, normal, $black-cl, null);
+            }
+        }
+    }
+
+    &__right {
+        &-heading {
+            .title {
+                @include text(26px, NS-B, normal, $btn-cl, null);
+            }
+        }
+
+        &-accordian {
+            button {
+                @include text(18px, NS-B, normal, $btn-cl, null);
+            }
+
+            .panel {
+                @include text(16px, NS-M, normal, $black-cl, null);
+            }
+        }
+    }
+}
+
+.footer {
+    .footer__section {
+        h3 {
+            @include text(18px, NS-B, normal, #00315C, null);
+        }
+
+        p {
+            @include text(16px, NS-R, normal, #787878, null);
+        }
+
+        ul {
+            li {
+                @include text(16px, NS-R, normal, #787878, null);
+            }
+        }
+
+        form {
+            input {
+                @include text(16px, NS-R, normal, #787878, null);
+            }
+
+            button {
+                @include text(16px, NS-B, normal, $white-cl, null);
+            }
+
+        }
+    }
+
+    .footer__bottom {
+        p {
+            @include text(16px, NS-R, null, #00315C, null);
+        }
+    }
+
+    @include sm {
+        .footer__bottom {
+            p {
+                @include text(14px !important, NS-R, null, #00315C, null);
+            }
+        }
+    }
+}
+
+.product_details {
+    .link {
+        @include text(16px, Lato-B, normal, $primary-cl, null);
+
+        a {
+            @include text(16px, Lato-R, normal, #d1d1d1, null);
+        }
+    }
+
+    .banner {
+        .overlay {
+            h1 {
+                @include text(32px, Lato-B, normal, $black-cl, null);
+            }
+
+            p {
+                @include text(16px, NS-R, normal, $desc, null);
+            }
+        }
+    }
+
+    .room-details {
+        .room__info {
+            .room__info-title {
+                h1 {
+                    @include text(32px, Lato-B, normal, $black-cl, null);
+                }
+
+                p {
+                    @include text(16px, Lato-B, normal, $black-cl, null);
+
+                }
+
+                .room__info-rating--comment {
+                    @include text(12px, Lato-L, normal, $black-cl, null);
+                }
+            }
+
+            .room-meta {
+                @include text(16px, Lato-B, normal, $quantity, null);
+            }
+
+            .room-features {
+                p {
+                    @include text(16px, Lato-R, normal, $btn-cl, null);
+                }
+            }
+
+            .room-price {
+                @include text(26px, Lato-B, normal, $btn-cl, null);
+
+                .currency {
+                    @include text(14px, Lato-B, normal, $btn-cl, null);
+                }
+
+                .per-date {
+                    @include text(18px, Lato-B, normal, $quantity, null);
+                }
+            }
+
+            .description-block {
+                .title {
+                    @include text(22px, Lato-B, normal, $btn-cl, null);
+                }
+
+                .description {
+                    @include text(15px, NS-R, normal, $desc, null);
+
+                    span {
+                        @include text(16px, NS-B, normal, $desc, null);
+                    }
+                }
+            }
+
+            .amenities {
+                h3 {
+                    @include text(22px, Lato-B, normal, $btn-cl, null);
+                }
+
+                li {
+                    @include text(16px, Lato-R, normal, $btn-cl, null);
+                }
+            }
+        }
+
+        .booking {
+            .booking-form {
+                h2 {
+                    @include text(24px, Lato-R, normal, $btn-cl, null);
+                }
+
+                form {
+                    .input_flex {
+                        p {
+                            @include text(16px, NS-R, normal, $btn-cl, null);
+                        }
+                    }
+
+                    h2 {
+                        @include text(24px, Lato-R, normal, $btn-cl, null);
+                    }
+
+                    input,
+                    select {
+                        @include text(16px, NS-R, normal, $btn-cl, null);
+                    }
+
+                    .button {
+                        a {
+                            @include text(18px, Lato-B, normal, $white-cl, null);
+                        }
+                    }
+                }
+            }
+
+            .accordion-product {
+                .accordion-item {
+                    .accordion-header {
+                        @include text(16px, Lato-B, normal, $btn-cl, null);
+                    }
+
+                    .accordion-content {
+                        p {
+                            @include text(16px, Lato-R, normal, $btn-cl, null);
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    .welcome-section {
+        .welcome-header {
+            h2 {
+                @include text(32px, Lato-B, normal, $btn-cl, null);
+            }
+        }
+
+        .content {
+            .text-block {
+                h3 {
+                    @include text(26px, Lato-B, normal, $btn-cl, null);
+                }
+
+                p {
+                    @include text(16px, NS-R, normal, $btn-cl, null);
+                }
+            }
+        }
+    }
+
+    .studio-section {
+        .studio-title {
+            @include text(32px, Lato-B, normal, $btn-cl, null);
+        }
+
+        .studio-quote {
+            @include text(18px, NS-L, normal, $btn-cl, null);
+        }
+
+        .studio-description {
+            @include text(18px, NS-L, normal, $btn-cl, null);
+        }
+    }
+
+    .similar__studios {
+        .similar__studios-list {
+            h3 {
+                @include text(32px, Lato-B, normal, $btn-cl, null);
+
+            }
+        }
+    }
+
+    .support {
+        .title {
+            h3 {
+                @include text(32px, Lato-B, normal, $btn-cl, null);
+            }
+
+            p {
+                @include text(22px, NS-R, normal, $btn-cl, null);
+            }
+        }
+
+        nav {
+            ul {
+                a {
+                    @include text(20px, Lato-B, normal, $btn-cl, null);
+                }
+            }
+        }
+    }
+}
+
+.service__page {
+    .link {
+        @include text(16px, Lato-B, normal, $primary-cl, null);
+
+        a {
+            @include text(16px, Lato-R, normal, #d1d1d1, null);
+        }
+    }
+
+    .banner-service {
+        .text-section {
+            .title {
+                @include text(36px, DC-SmB, normal, $btn-cl, null);
+            }
+
+            p {
+                @include text(18px, NS-R, normal, $btn-cl, null);
+            }
+        }
+    }
+
+    .gbox-section {
+        .container {
+            .gbox-title {
+                @include text(32px, Lato-B, normal, $btn-cl, null);
+            }
+
+            .gbox-description {
+                @include text(22px, NS-R, normal, $btn-cl, null);
+            }
+        }
+    }
+
+    .studio-section {
+        .studio-title {
+            @include text(32px, Lato-B, normal, $btn-cl, null);
+        }
+
+        .studio-quote {
+            @include text(18px, NS-L, normal, $btn-cl, null);
+        }
+
+        .studio-gallery {
+            .studio-gallery-item {
+                p {
+                    @include text(18px, Lato-SmB, normal, $btn-cl, null);
+                }
+            }
+        }
+    }
+
+    .support {
+        .title {
+            h3 {
+                @include text(32px, Lato-B, normal, $btn-cl, null);
+            }
+
+            p {
+                @include text(22px, NS-R, normal, $btn-cl, null);
+            }
+        }
+
+        nav {
+            ul {
+                a {
+                    @include text(20px, Lato-B, normal, $btn-cl, null);
+                }
+            }
+        }
+    }
+
+    .photo__studio {
+        &-flex {
+            &-text {
+                .photo__studio--title {
+                    @include text(40px, DC-SmB, normal, $btn-cl, null);
+                }
+
+                .description {
+                    p {
+                        @include text(18px, NS-R, 1.5, $btn-cl, null);
+                    }
+                }
+
+                button {
+                    @include text(18px, Lato-B, normal, $white-cl, null);
+                }
+            }
+        }
+    }
+}

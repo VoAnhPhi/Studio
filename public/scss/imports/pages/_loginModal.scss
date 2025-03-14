@@ -1,0 +1,102 @@
+.loginModal {
+    @include mid(true);
+    padding: 50px;
+    border-radius: 8px;
+    flex-direction: column;
+    position: relative;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    &__heading {
+        padding-bottom: 60px;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+
+        .loginMainForm {
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+
+            >*:not(.select-privacy) {
+                display: flex;
+                flex-direction: column;
+                row-gap: 4px;
+
+                input {
+                    border: 1px solid #D1D1D1;
+                    border-radius: 4px;
+                    outline: none;
+                    padding: 12px;
+                }
+            }
+
+            .select-privacy {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .hold-login {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 6px;
+                }
+            }
+        }
+
+        .button {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+
+            button {
+                background-color: $btn-cl;
+                width: max-content;
+                margin: 0 auto;
+                cursor: pointer;
+                padding: 12px 45px;
+                border: none;
+                color: $white-cl;
+                border-radius: 4px;
+            }
+        }
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 30px;
+        right: 45px;
+        cursor: pointer;
+    }
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.calendar-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    cursor: pointer;
+}

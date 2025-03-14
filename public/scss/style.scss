@@ -1,0 +1,39 @@
+/* Core variables and mixins*/
+@import "imports/core/reset";
+@import "imports/core/variables";
+@import "imports/core/mixins";
+@import "imports/core/layouts";
+@import "imports/core/components";
+@import "imports/core/libs";
+@import "imports/core/loading";
+@import "imports/core/bootstrap_mini"; // Nếu không Responsive bằng BooTstrap 4 Grid thì không cần import vào.
+
+/* Navigation, header, footer*/
+@import "imports/core/header";
+@import "imports/core/nav";
+@import "imports/core/footer";
+
+/* Pages */
+@import "imports/pages/home";
+@import "imports/pages/contact";
+@import "imports/pages/news";
+@import "imports/pages/detailNews";
+@import "imports/pages/product";
+@import "imports/pages/detailProduct";
+@import "imports/pages/checkout";
+@import "imports/pages/order";
+@import "imports/pages/payment_information";
+@import "imports/pages/account";
+@import "imports/pages/delete_account";
+@import "imports/pages/change_password";
+@import "imports/pages/service";
+@import "imports/pages/loginModal";
+@import "imports/pages/capcha";
+@import "imports/pages/service";
+@import "imports/pages/resetPasswordSuccess";
+@import "imports/pages/resetPassword";
+@import "imports/pages/registerModal";
+@import "imports/pages/paymentSucess";
+@import "imports/pages/forgetPassword";
+@import "imports/pages/deleteAccount";
+@import "imports/pages/deleteAccountSuccess";

@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="item" data-event="Thông tin hoạt động - sự kiện" data-link="?page=detailNews">
+        <!-- Nội dung item 1 -->
+    </div>
+    <div class="item" data-event="Tin khuyến mãi" data-link="?page=detailNews">
+        <!-- Nội dung item 2 -->
+    </div>
+    <div class="item" data-event="Thông tin hoạt động - sự kiện" data-link="?page=detailNews">
+        <!-- Nội dung item 3 -->
+    </div>
+    <div class="item" data-event="Tin khuyến mãi" data-link="?page=detailNews">
+        <!-- Nội dung item 4 -->
+    </div>
+</div>
+
+<style>
+.container {
+    display: grid;
+    grid-template-columns: 60% 40%; /* 2 cột: 60% trái, 40% phải */
+    gap: 20px;
+    grid-template-rows: auto; /* Không cố định chiều cao hàng, để các hàng tự điều chỉnh theo nội dung */
+}
+
+.item {
+    background-color: lightblue;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.item:nth-child(1) {
+    height: 250px; /* Chiều cao cho item 1 */
+}
+
+.item:nth-child(2) {
+    height: 200px; /* Chiều cao cho item 2 */
+}
+
+.item:nth-child(3) {
+    height: 350px; /* Chiều cao cho item 3 */
+    margin-top: 15px; /* Khoảng cách 15px giữa item 1 và item 3 */
+}
+
+.item:nth-child(4) {
+    height: 400px; /* Chiều cao cho item 4 */
+}
+
+.item:nth-child(5) {
+    height: 300px; /* Item 5 có chiều cao khác */
+}
+
+.item:nth-child(6) {
+    height: 450px; /* Item 6 có chiều cao lớn hơn */
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Chuyển thành 1 cột trên màn hình nhỏ */
+    }
+}
+
+</style>

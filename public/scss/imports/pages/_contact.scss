@@ -1,0 +1,95 @@
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+
+.mainContent {
+    background-color: #d1d1d1;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        column-gap: 30px;
+    }
+
+    &__left {
+        background-color: $white-cl;
+        padding: 24px 12px;
+        border-radius: 16px;
+
+        &-heading {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+        }
+
+        &-working {
+            display: flex;
+            flex-direction: column;
+            row-gap: 8px;
+
+            .timeWorking {
+                display: flex;
+                align-items: center;
+                column-gap: 12px;
+            }
+        }
+
+        &-accordian {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 8px;
+
+            button {
+                background-color: #ECF8FF;
+            }
+        }
+    }
+
+    &__right {
+        background-color: $white-cl;
+        padding: 24px 24px;
+        border-radius: 16px;
+
+        &-accordian {
+            button {
+                background-color: unset;
+            }
+        }
+    }
+}

@@ -1,0 +1,129 @@
+.breadCrumb {
+    padding-top: 20px;
+
+    &__direction {
+        @include mid(true);
+        justify-content: left;
+        column-gap: 4px;
+
+        span {
+            img {
+                display: block;
+                height: 100%;
+                align-content: center;
+            }
+        }
+    }
+}
+
+.detailNewsBanner {
+    height: calc(100vh - ($ptop + 46px));
+
+    .container {
+        position: relative;
+        height: 100%;
+    }
+
+    &__content {
+        position: absolute;
+        z-index: 100;
+        left: 0;
+        bottom: 0;
+        width: 50%;
+        height: 60%;
+        padding: 90px 50px;
+        background-color: $white-cl;
+
+        //Box Shadow
+        box-shadow: -15px 10px 35px 0px rgba(176, 176, 176, 1);
+        -webkit-box-shadow: -15px 10px 35px 0px rgba(176, 176, 176, 1);
+        -moz-box-shadow: -15px 10px 35px 0px rgba(176, 176, 176, 1);
+    }
+
+    &__img {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 60%;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.compareProduct {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        padding-bottom: 50px;
+
+        &-content {
+            padding: 50px 65px;
+            margin-bottom: 100px;
+            background: rgba(255, 255, 255, 0.33);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(17px);
+            -webkit-backdrop-filter: blur(17px);
+            border: 1px solid rgba(44, 33, 33, 0.37);
+
+            &.--left {
+                max-width: 90%;
+                display: flex;
+                flex-direction: column;
+                row-gap: 16px;
+            }
+
+            &.--right {
+                max-width: 90%;
+                float: right;
+                display: flex;
+                flex-direction: column;
+                row-gap: 16px;
+            }
+
+            .paraConfig {
+                display: flex;
+                flex-direction: column;
+                row-gap: 16px;
+
+                p {
+                    padding-left: 70px;
+                }
+            }
+        }
+    }
+}
+
+.consider {
+    .container {
+        @include mid(true);
+        flex-direction: column;
+        row-gap: 16px;
+    }
+}
+
+.support {
+    &__heading {
+        hr {
+            width: 20%;
+            margin: 14px auto;
+        }
+    }
+
+    &__content {
+        padding-top: 36px;
+        @include mid(true);
+        column-gap: 54px;
+
+        &-left {
+            ul {
+                display: flex;
+                flex-direction: column;
+                row-gap: 62px;
+            }
+        }
+    }
+}
