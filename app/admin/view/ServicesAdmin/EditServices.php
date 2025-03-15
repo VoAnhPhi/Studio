@@ -1,5 +1,74 @@
+<?php
+require_once '../../app/admin/modal/ServiceModel.php';
+$serviceModal = new ServiceModal();
+
+if (isset($_GET['service_id'])) {
+    $service_id = intval($_GET['service_id']);
+
+    $service = $serviceModal->getServiceById($service_id);
+    if ($service) {
+        $serviceName = htmlspecialchars($service['name']);
+        $price = number_format($service['price'], 0, ',', '.') . 'đ / ngày';
+        $date = htmlspecialchars($_POST['date']);
+        $studio = htmlspecialchars($_POST['studio']);
+        $description1 = htmlspecialchars($service['description']);
+        $image = htmlspecialchars($service['image']);
+        $created_at = htmlspecialchars($_POST['created_at']);
+        $availability = htmlspecialchars($service['availability']);
+    } else {
+        echo "Service not found.";
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnSaveChanges'])) {
+    $serviceName = htmlspecialchars($_POST['serviceName']);
+    $price = floatval($_POST['price']);
+    $date = htmlspecialchars($_POST['date']);
+    $studio = htmlspecialchars($_POST['studio']);
+    $description = htmlspecialchars($_POST['serviceDescription']);
+    $created_at = htmlspecialchars($_POST['created_at']);
+    $availability = $_POST['availability'] === 'available' ? 'available' : 'not_available';
+
+    if ($_FILES['service_image']['error'] === UPLOAD_ERR_OK) {
+        $image = uploadImage($_FILES['service_image']);
+    }
+
+    $serviceData = [
+        'service_id' => $service_id,
+        'name' => $serviceName,
+        'price' => $price,
+        'date' => $date,
+        'studio' => $studio,
+        'description' => $description,
+        'created_at' => $created_at,
+        'availability' => $availability,
+        'image' => $image,
+    ];
+
+    $result = $serviceModal->editService($serviceData);
+    if ($result) {
+        header("Location: index.php?action=service"); 
+        exit;
+    } else {
+        echo "Error updating service.";
+    }
+}
+
+function uploadImage($file)
+{
+    $targetDir = "../../app/admin/lib/upload/";
+    $fileName = uniqid() . "_" . basename($file['name']);
+    $targetFilePath = $targetDir . $fileName;
+
+    if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
+        return $fileName;
+    }
+    return null;
+}
+?>
+
 <body>
-    <section class="edit-service-container">
+    <section class="edit-service-container" id="editServiceForm">
         <div class="edit-service-wrapper">
             <header class="edit-service-header">
                 <h1 class="edit-service-title">Edit Service</h1>
@@ -13,8 +82,9 @@
             <div class="edit-service-image-section">
                 <div class="edit-service-image-container">
                     <label for="mainImage" class="edit-service-image-label">Description image</label>
-                    <div class="edit-service-upload-container-left">
-                        <img src="../lib/img/Rectangle 24168.svg" alt="Upload icon" width="34" height="34" />
+                    <div class="edit-service-upload-container">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bbb44c710fdd4bcb04741d5dae8f291968b888a3b220974a1022a0961a6c75af?placeholderIfAbsent=true&apiKey=c01b0b1f77f44db1a01eba6bb534c16f"
+                            alt="Upload icon" width="34" height="34" />
                     </div>
 
                 </div>
@@ -31,30 +101,35 @@
                 </div>
             </div>
 
-            <form class="edit-service-form">
+            <form class="edit-service-form" method="POST" enctype="multipart/form-data">
                 <div class="edit-service-input-wrapper">
-                    <label for="productPrice" class="edit-service-input-label">Price</label>
-                    <input type="number" id="productPrice" class="edit-service-input" placeholder="/ ngày" required />
+                    <label for="servicePrice" class="edit-service-input-label">Price</label>
+                    <input type="number" id="servicePrice" name="price" class="edit-service-input" placeholder="/ ngày" required 
+                    value="<?php echo $service['price']; ?>"/>
                 </div>
 
                 <div class="edit-service-input-wrapper">
-                    <label for="productCategory" class="edit-service-input-label">Studio</label>
+                    <label for="serviceStudio" class="edit-service-input-label">Studio</label>
                     <div class="edit-service-select-wrapper">
-                        <select id="productCategory" class="edit-service-select" required>
-                            <option value="">Select Type</option>
-                            <option value="type1">Type 1</option>
-                            <option value="type2">Type 2</option>
-                        </select>
+                    <select id="serviceStudio" name="studio" class="edit-service-select" required>
+                        <option value="">Select Type</option>
+                        <option value="type1" <?php echo $service == 'type1' ? 'selected' : ''; ?>>Type 1</option>
+                        <option value="type2" <?php echo $service == 'type2' ? 'selected' : ''; ?>>Type 2</option>
+                    </select>
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5ce3312dee92806ec00e2d79ae205b9c41db31566e3ccaf3cc9023b17706835e?placeholderIfAbsent=true&apiKey=c01b0b1f77f44db1a01eba6bb534c16f"
                             alt="" width="14" height="7" aria-hidden="true" />
                     </div>
                 </div>
 
                 <div class="edit-service-input-wrapper">
-                    <label for="productName" class="edit-service-input-label">Service Name</label>
-                    <input type="text" id="productName" class="edit-service-input" placeholder="VD: Dịch vụ chụp ảnh"
-                        required />
+                    <label for="serviceName" class="edit-service-input-label">Service Name</label>
+                    <input type="text" id="serviceName" name="serviceName" class="edit-service-input" placeholder="VD: Dịch vụ chụp ảnh"
+                        required value="<?php echo $serviceName; ?>" />
                 </div>
+                <button type="submit" name="btnSaveChanges" class="edit-service-save-btn" aria-label="Save changes">
+                        Save Changes
+                </button>
+
             </form>
 
             <h2 class="edit-service-description-title">Service Description</h2>

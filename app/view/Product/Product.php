@@ -1,7 +1,11 @@
 <main id="main__products">
-
-
-    <div id="link"><a href="#">Trang chủ</a><img src="img/icon/arrow-right-2.svg">Studio</div>
+    <section class="link">
+        <div class="container">
+            <a href="index.php">Trang chủ</a>
+            <img src="img/icon/arrow-right-2.svg" alt="arrow">
+            Studio
+        </div>
+    </section>
 
     <h3 id="big_title">TRẢI NHGIỆM STUDIO MỚI MẺ, SÁNG TẠO VÀ ĐỘC ĐÁO TẠI GBOX!</h3>
 
@@ -21,127 +25,57 @@
 
         <!-- <div class="swiper-pagination"></div> -->
     </div>
+
     <div class="container">
-        <section id="high_rate">
+    <section id="high_rate">
             <h3>Sự lựa chọn hàng đầu của khách hàng</h3>
             <div class="content">
-                <div class="high_rate_item">
-
-                    <div class="first_seen">
-                        <img src="img/product-page/high-rate-1.png" alt="anh">
-                        <div class="info">
-                            <div class="type">Top Studio</div>
-                            <div class="name">Le House Boutique Studio</div>
-                            <div class="rate">
-                                <div class="star"><img src="img/icon/five-star.svg" alt="sao"></div>
-                                <div class="quantity">(20 people)</div>
+                <?php
+                $topProduct = $data['topProduct'];
+                foreach ($topProduct as $product): ?>
+                    <div class="high_rate_item">
+                        <div class="first_seen">
+                            <img src="img/product-details/<?php echo htmlspecialchars($product['image']); ?>" alt="">
+                            <div class="info">
+                                <div class="type">Top Studio</div>
+                                <div class="name"><?= htmlspecialchars($product['name']); ?></div>
+                                <div class="rate">
+                                    <div class="star"><img src="img/icon/five-star.svg" alt="sao"></div>
+                                    <div class="quantity">(20 people)</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="hidden_seen">
-                        <div class="content">
-                            <div class="title">Best of the Week</div>
-                            <div class="desc">
-                                Đầm Sen Park Studio là không gian lý tưởng với cửa sổ kính suốt từ trần đến sàn, mở tầm nhìn tuyệt đẹp
-                                ra đại dương.
-                            </div>
-                            <div class="number_info">
-                                <div class="first_num">72+
-                                    <div class="desc_num">Quốc gia</div>
+                        <div class="hidden_seen">
+                            <div class="content">
+                                <div class="title">Best of the Week</div>
+                                <div class="desc">
+                                    <?= htmlspecialchars($product['name']); ?>
+                                    <?= htmlspecialchars(substr($product['description'], 0, 130)); ?>...
                                 </div>
-                                <div class="first_num">72+
-                                    <div class="desc_num">Quốc gia</div>
+                                <div class="number_info">
+                                    <div class="first_num">72+
+                                        <div class="desc_num">Quốc gia</div>
+                                    </div>
+                                    <div class="first_num">72+
+                                        <div class="desc_num">Quốc gia</div>
+                                    </div>
+                                    <div class="first_num">72+
+                                        <div class="desc_num">Quốc gia</div>
+                                    </div>
                                 </div>
-                                <div class="first_num">72+
-                                    <div class="desc_num">Quốc gia</div>
-                                </div>
-                            </div>
 
-                            <button>Xem ngay</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="high_rate_item">
-
-                    <div class="first_seen">
-                        <img src="img/product-page/high-rate-2.png" alt="anh">
-                        <div class="info">
-                            <div class="type">Top Studio</div>
-                            <div class="name">Le House Boutique Studio</div>
-                            <div class="rate">
-                                <div class="star"><img src="img/icon/five-star.svg" alt="sao"></div>
-                                <div class="quantity">(20 people)</div>
+                                <button><a href="?page=detailProduct&id=<?= htmlspecialchars($product['product_id']); ?>">Xem
+                                        ngay</a></button>
                             </div>
                         </div>
+
                     </div>
-
-                    <div class="hidden_seen">
-                        <div class="content">
-                            <div class="title">Best of the Week</div>
-                            <div class="desc">
-                                Đầm Sen Park Studio là không gian lý tưởng với cửa sổ kính suốt từ trần đến sàn, mở tầm nhìn tuyệt đẹp
-                                ra đại dương.
-                            </div>
-                            <div class="number_info">
-                                <div class="first_num">72+
-                                    <div class="desc_num">Quốc gia</div>
-                                </div>
-                                <div class="first_num">72+
-                                    <div class="desc_num">Quốc gia</div>
-                                </div>
-                                <div class="first_num">72+
-                                    <div class="desc_num">Quốc gia</div>
-                                </div>
-                            </div>
-
-                            <button>Xem ngay</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="high_rate_item">
-
-                    <div class="first_seen">
-                        <img src="img/product-page/high-rate-3.png" alt="anh">
-                        <div class="info">
-                            <div class="type">Top Studio</div>
-                            <div class="name">Le House Boutique Studio</div>
-                            <div class="rate">
-                                <div class="star"><img src="img/icon/five-star.svg" alt="sao"></div>
-                                <div class="quantity">(20 people)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hidden_seen">
-                        <div class="content">
-                            <div class="title">Best of the Week</div>
-                            <div class="desc">
-                                Đầm Sen Park Studio là không gian lý tưởng với cửa sổ kính suốt từ trần đến sàn, mở tầm nhìn tuyệt đẹp
-                                ra đại dương.
-                            </div>
-                            <div class="number_info">
-                                <div class="first_num">72+
-                                    <div class="desc_num">Quốc gia</div>
-                                </div>
-                                <div class="first_num">72+
-                                    <div class="desc_num">Quốc gia</div>
-                                </div>
-                                <div class="first_num">72+
-                                    <div class="desc_num">Quốc gia</div>
-                                </div>
-                            </div>
-
-                            <button>Xem ngay</button>
-                        </div>
-                    </div>
-
-                </div>
-
+                <?php endforeach; ?>
             </div>
         </section>
+
+
     </div>
 
 
@@ -151,23 +85,23 @@
                 <nav>
                     <ul>
                         <li>Tất cả</li>
-                        <li>Điện Bàn, Quảng Nam</li>
-                        <li>Phú Lộ, Thừa Thiên Huế</li>
-                        <li>Ninh Hoà, Khánh Hoà</li>
-                        <li>Hạ Long, Bà Rịa - Vũng Tàu</li>
-                        <li>Vĩnh Hải,  Ninh Thuận</li>
+                        <li>Quảng Nam</li>
+                        <li>Thừa Thiên Huế</li>
+                        <li>Khánh Hoà</li>
+                        <li>Bà Rịa - Vũng Tàu</li>
+                        <li>Ninh Thuận</li>
                     </ul>
                 </nav>
                 <div class="dropdown">
                     <!-- Dropdown sẽ hiển thị trên tablet/mobile -->
                     <button class="dropdown-toggle">Tất cả <img src="img/icon/arrow-down.svg" alt=""></button>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="dropdown-item">Điện Bàn, Quảng Nam</a></li>
-                        <li><a href="#" class="dropdown-item">Phú Lộ, Thừa Thiên Huế</a></li>
-                        <li><a href="#" class="dropdown-item">Ninh Hoà, Khánh Hoà</a></li>
-                        <li><a href="#" class="dropdown-item">Hạ Long, Bà Rịa - Vũng Tàu</a></li>
-                        <li><a href="#" class="dropdown-item">Vĩnh Hải,  Ninh Thuận</a></li>
                         <li><a href="#" class="dropdown-item active">Tất cả</a></li>
+                        <li><a href="#" class="dropdown-item">Quảng Nam</a></li>
+                        <li><a href="#" class="dropdown-item">Thừa Thiên Huế</a></li>
+                        <li><a href="#" class="dropdown-item">Khánh Hoà</a></li>
+                        <li><a href="#" class="dropdown-item">Bà Rịa - Vũng Tàu</a></li>
+                        <li><a href="#" class="dropdown-item">Ninh Thuận</a></li>
                     </ul>
                 </div>
                 <div class="search_field">
@@ -178,55 +112,45 @@
 
             <div id="product_wrapper">
                 <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "studio";
+                    function getProvince($location)
+                    {
+                        $parts = explode(',', $location);
+                        return count($parts) > 1 ? trim($parts[1]) : '';
+                    }
+                $listProduct = $data['products'];
 
-                $conn = new mysqli($servername, $username, $password, $dbname);
+                foreach ($listProduct as $product): ?>
+                    <div class="item" data-location="<?= htmlspecialchars(getProvince($product['location'])); ?>">
+                        <img src="img/product-details/<?= htmlspecialchars($product['image']); ?>"
+                            alt="<?= htmlspecialchars($product['image']); ?>">
+                        <div class="row1">
+                            <div class="name"><?= htmlspecialchars($product['name']); ?></div>
+                            <div class="star">
+                                <?php for ($i = 0; $i < 5; $i++): ?>
+                                    <img src="img/icon/star.svg" alt="sao">
+                                <?php endfor; ?>
 
-                if ($conn->connect_error) {
-                    die("Kết nối thất bại: " . $conn->connect_error);
-                }
-
-                $sql = "SELECT studio_id, name, price, location, description, image FROM studiocategory";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                ?>
-                        <div class="item" data-location = "<?php echo $row['location']; ?>">
-                            <img src="img/product-details/<?php echo $row['image']; ?>" alt="<?php echo $row['image']; ?>">
-                            <div class="row1">
-                                <div class="name"><?php echo $row['name']; ?></div>
-                                <div class="star">
-                                    <?php for ($i = 0; $i < 5; $i++) { ?>
-                                        <img src="img/icon/star.svg" alt="sao">
-                                    <?php } ?>
-                                </div>
-                            </div>
-                            <div class="desc"><?php echo $row['description']; ?></div>
-                            <div class="location">
-                                <img src="img/icon/map-pin.svg" alt="">
-                                <?php echo $row['location']; ?>
-                            </div>
-                            <div class="last-row">
-                                <div class="price"><?php echo number_format($row['price'], 0, ',', '.'); ?> đ
-                                    <div class="day"> / ngày</div>
-                                </div>
-                                <button><a href="?page=detailProduct&id=<?php echo $row['studio_id']; ?>">Đặt ngay</a></button>
                             </div>
                         </div>
-                <?php
-                    }
-                } else {
-                    echo "Không có sản phẩm nào.";
-                }
-
-                // Đóng kết nối
-                $conn->close();
-                ?>
+                        <div class="desc"><?= htmlspecialchars($product['description']); ?></div>
+                        <div class="location">
+                            <img src="img/icon/map-pin.svg" alt="Map Pin Icon">
+                            <?= htmlspecialchars($product['location']); ?>
+                        </div>
+                        <div class="last-row">
+                            <div class="price">
+                                <?= number_format($product['price'], 0, ',', '.'); ?> đ
+                                <div class="day">/ ngày</div>
+                            </div>
+                            <button>
+                                <a href="?page=detailProduct&id=<?= htmlspecialchars($product['product_id']); ?>">Đặt
+                                    ngay</a>
+                            </button>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
+
             <div class="more">
                 Xem thêm
                 <img src="img/icon/more.svg" alt="">
@@ -234,21 +158,26 @@
         </section>
     </div>
 
-    <div class="container">
-        <section id="hint">
-            <h3>Một vài gợi ý cho bạn</h3>
+
+    <section class="similar__studios">
+        <div class="similar__studios-list">
+            <h3>Một vài gợi ý studio tương tự</h3>
             <div class="swiper-hint-container">
                 <div class="swiper-hint-wrapper">
-                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-1.png" alt="1"></div>
-                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-2.png" alt="2"></div>
-                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-3.png" alt="3"></div>
-                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-4.png" alt="4"></div>
-                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-5.png" alt="5"></div>
+                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-1.png" alt="1">
+                    </div>
+                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-2.png" alt="2">
+                    </div>
+                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-3.png" alt="3">
+                    </div>
+                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-4.png" alt="4">
+                    </div>
+                    <div class="swiper-hint-slide"><img class="hint-img" src="img/product-page/hint-5.png" alt="5">
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
-
+        </div>
+    </section>
     <div class="container">
         <section id="rate">
             <div class="title">
@@ -261,7 +190,8 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide swiper-comments-slide">
                             <img src="img/icon/comment-icon.svg" alt="">
-                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
+                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ
+                                luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
                             <div class="info-user">
                                 <img src="" alt="avatar">
                                 <div class="username">Trần Thanh Tú</div>
@@ -270,7 +200,8 @@
                         </div>
                         <div class="swiper-slide swiper-comments-slide">
                             <img src="img/icon/comment-icon.svg" alt="">
-                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
+                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ
+                                luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
                             <div class="info-user">
                                 <img src="" alt="avatar">
                                 <div class="username">Trần Thanh Tú</div>
@@ -279,7 +210,8 @@
                         </div>
                         <div class="swiper-slide swiper-comments-slide">
                             <img src="img/icon/comment-icon.svg" alt="">
-                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
+                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ
+                                luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
                             <div class="info-user">
                                 <img src="" alt="avatar">
                                 <div class="username">Trần Thanh Tú</div>
@@ -288,7 +220,8 @@
                         </div>
                         <div class="swiper-slide swiper-comments-slide">
                             <img src="img/icon/comment-icon.svg" alt="">
-                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
+                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ
+                                luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
                             <div class="info-user">
                                 <img src="" alt="avatar">
                                 <div class="username">Trần Thanh Tú</div>
@@ -297,7 +230,8 @@
                         </div>
                         <div class="swiper-slide swiper-comments-slide">
                             <img src="img/icon/comment-icon.svg" alt="">
-                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
+                            <p>"Studio này có dịch vụ rất chuyên nghiệp, đội ngũ nhiếp ảnh gia sáng tạo và tận tâm. Họ
+                                luôn lắng nghe và mang đến những bức ảnh đẹp, ấn tượng."</p>
                             <div class="info-user">
                                 <img src="" alt="avatar">
                                 <div class="username">Trần Thanh Tú</div>
@@ -343,155 +277,4 @@
             </div>
         </section>
     </div>
-
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const swiper1 = new Swiper(".product-page-studio-img", {
-                loop: false,
-                slidesPerView: 3, // Hiển thị 3 slide
-                autoplay: {
-                    delay: 5000, // Tự động chuyển slide sau 5 giây
-                },
-                spaceBetween: 1,
-                pagination: {
-                    el: ".swiper-pagination1",
-                    clickable: true,
-                },
-            });
-
-        });
-        document.addEventListener("DOMContentLoaded", function() {
-            const swiperComments = new Swiper('.swiper-comments-container', {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 20,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 5000,
-                },
-                breakpoints: {
-                    768: {
-                        slidesPerView: 2,
-                        spaceBetween: 30,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 40,
-                    }
-                }
-            });
-        });
-
-
-
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const dropdownToggle = document.querySelector(".dropdown-toggle");
-            const dropdownMenu = document.querySelector(".dropdown-menu");
-            const dropdownItems = document.querySelectorAll(".dropdown-menu .dropdown-item");
-
-            // Xử lý toggle menu
-            dropdownToggle.addEventListener("click", () => {
-                dropdownMenu.classList.toggle("show"); // Thêm/xóa class `show`
-            });
-
-            // Đóng menu khi nhấp ra ngoài
-            document.addEventListener("click", (e) => {
-                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                    dropdownMenu.classList.remove("show");
-                }
-            });
-
-            // Xử lý hiệu ứng active cho các item
-            dropdownItems.forEach((item) => {
-                item.addEventListener("click", (e) => {
-                    e.preventDefault(); // Ngăn hành động mặc định (nếu là thẻ a)
-
-                    // Xóa active từ các item khác
-                    dropdownItems.forEach((i) => i.classList.remove("active"));
-
-                    // Thêm active cho item được click
-                    item.classList.add("active");
-
-                    // Cập nhật text cho nút toggle
-                    dropdownToggle.textContent = item.textContent;
-
-                    // Đóng menu sau khi chọn
-                    dropdownMenu.classList.remove("show");
-                });
-            });
-        });
-
-
-        function renderProducts(filterLocation = 'Tất cả') {
-            const productWrapper = document.getElementById("product_wrapper");
-            const allProducts = productWrapper.querySelectorAll('.item');
-
-
-            allProducts.forEach(product => {
-                const productLocation = product.getAttribute('data-location');
-
-                if (filterLocation === 'Tất cả' || productLocation === filterLocation) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        }
-
-        function setupFilters() {
-            const navItems = document.querySelectorAll('#head nav ul li');
-            const dropdownItems = document.querySelectorAll('.dropdown-menu .dropdown-item');
-
-
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    renderProducts(item.textContent);
-                    highlightActive(item);
-                });
-            });
-
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    renderProducts(item.textContent);
-                    highlightActive(item);
-                });
-            });
-
-            function highlightActive(selectedItem) {
-
-                navItems.forEach(item => item.classList.remove('active'));
-                dropdownItems.forEach(item => item.classList.remove('active'));
-
-
-                selectedItem.classList.add('active');
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            setupFilters();
-            renderProducts();
-
-        });
-        document.addEventListener('DOMContentLoaded', () => {
-            setupFilters();
-
-
-            const firstNavItem = document.querySelector('#head nav ul li:first-child');
-            const firstDropdownItem = document.querySelector('.dropdown-menu .dropdown-item:last-child');
-
-            if (firstNavItem) firstNavItem.classList.add('active');
-            if (firstDropdownItem) firstDropdownItem.classList.add('active');
-
-            renderProducts();
-        });
-
-
-        const navItems = document.querySelectorAll('nav ul li');
-    </script>
 </main>

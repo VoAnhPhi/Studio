@@ -2,33 +2,33 @@
     <section class="breadCrumb">
         <div class="container">
             <div class="breadCrumb__direction">
-                <a href="#">
+                <a href="?page=home">
                     <span class="parentDirection --text">Trang chủ</span>
                 </a>
                 <span><img src="img/icon/cherv-right.svg" alt=""></span>
-                <a href="#">
+                <a href="?page=newspage">
                     <span class="directionPage --text">Tin tức</span>
                 </a>
                 <span><img src="img/icon/cherv-right.svg" alt=""></span>
-                <span class="directionDestination --text">So sánh mua nhà...</span>
+                <span class="directionDestination --text">
+                    <?php echo htmlspecialchars(substr($data['news_detail']['title'], 0, 30)); ?>...
+                </span>
             </div>
         </div>
     </section>
+
     <section class="detailNewsBanner">
         <div class="container">
             <div class="detailNewsBanner__content">
                 <div class="detailNewsBanner__content-title">
-                    So sánh thuê nhà tiện ích và mua nhà: Lựa chọn nào phù hợp hơn? 
+                    <?php echo htmlspecialchars($data['news_detail']['title']); ?>
                 </div>
                 <div class="detailNewsBanner__content-text">
-                    Khi quyết định giữa việc thuê nhà tiện ích và mua nhà, có nhiều yếu tố cần xem xét. Mỗi lựa chọn đều
-                    có
-                    ưu và nhược điểm riêng, và việc lựa chọn phù hợp phụ thuộc vào nhu cầu và hoàn cảnh cá nhân của từng
-                    người. Dưới đây là một số so sánh để giúp bạn có cái nhìn rõ ràng hơn.
+                    <?php echo htmlspecialchars($data['news_detail']['content']); ?>
                 </div>
             </div>
             <div class="detailNewsBanner__img">
-                <img src="img/news_3.jpg" alt="">
+                <img src="img/news-page/<?php echo htmlspecialchars($data['news_detail']['image']); ?>" alt="">
             </div>
         </div>
     </section>

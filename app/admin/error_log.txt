@@ -1,0 +1,103 @@
+[2024-12-10 08:23:08] SQL Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'main_image' in 'field list'
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"B\u00ecnh D\u01b0\u01a1ng",":availability":"available",":main_image":"6757ec5ccf44c_chonhonhungtrend.jpg",":additional_images":"[]"}
+
+[2024-12-10 08:23:10] SQL Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'main_image' in 'field list'
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"B\u00ecnh D\u01b0\u01a1ng",":availability":"available",":main_image":"6757ec5e6eb64_chonhonhungtrend.jpg",":additional_images":"[]"}
+
+[2024-12-10 08:23:21] SQL Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'main_image' in 'field list'
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"B\u00ecnh D\u01b0\u01a1ng",":availability":"available",":main_image":"6757ec69e2164_chonhonhungtrend.jpg",":additional_images":"[]"}
+
+[2024-12-10 08:23:54] SQL Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'main_image' in 'field list'
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"123123",":availability":"available",":main_image":"6757ec8a12b9d_logo-fpt.png",":additional_images":"[]"}
+
+[2024-12-10 08:24:21] SQL Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'main_image' in 'field list'
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"123123",":availability":"available",":main_image":"6757eca572598_logo-fpt.png",":additional_images":"[]"}
+
+[2024-12-10 08:27:27] SQL Execution Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'main_image' in 'field list'
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"123123",":availability":"available",":main_image":null,":additional_images":"[]"}
+
+[2024-12-10 08:28:14] SQL Execution Error: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"123123",":availability":"available",":image":"6757ed8eb0f22_logo-fpt.png",":additional_images":"[]"}
+
+[2024-12-10 08:30:05] SQL Execution Error: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"123123",":availability":"available",":image":"6757edfd26b4b_logo-fpt.png",":additional_images":null}
+
+[2024-12-10 08:30:28] SQL Execution Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"123123",":availability":"available",":image":"6757ee1496792_logo-fpt.png"}
+
+[2024-12-10 08:30:35] SQL Execution Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+SQL: INSERT INTO products (name, price, category, description, location, availability, main_image, additional_images) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :main_image, :additional_images)
+Params: {":name":"123123",":price":123123,":category":"studio",":description":"123123",":location":"123123",":availability":"available",":image":"6757ee1b65acb_logo-fpt.png"}
+
+[2024-12-11 10:09:20] SQL Execution Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, 
+                  price = ?, 
+                  category = ?, 
+       ...' at line 2
+SQL: UPDATE products SET 
+                  name = ?, 
+                  price = ?, 
+                  category = ?, 
+                  description = ?, 
+                  location = ?, 
+                  availability = ?, 
+                  image = ?, 
+                  capacity = ? 
+                  WHERE product_id = ?
+Params: N/A
+
+[2024-12-11 12:18:11] SQL Execution Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'studio.products' doesn't exist
+SQL: SELECT * FROM products
+Params: N/A
+
+[2024-12-11 12:18:29] SQL Execution Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'studio.products' doesn't exist
+SQL: SELECT * FROM products
+Params: N/A
+
+[2024-12-11 12:18:32] SQL Execution Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'studio.products' doesn't exist
+SQL: SELECT * FROM products
+Params: N/A
+
+[2024-12-11 12:19:40] SQL Execution Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'studio.products' doesn't exist
+SQL: SELECT * FROM products
+Params: N/A
+
+[2024-12-11 12:24:05] SQL Execution Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+SQL: INSERT INTO products (name, price, category, description, location, availability, image) 
+                VALUES (:name, :price, :category, :description, :location, :availability, :image)
+Params: {":name":"123123",":price":123123,":category":"hotel",":description":"123123",":location":"123123",":availability":"not_available",":image":"6759765505671_chonhonhungtrend.jpg"}
+
+[2024-12-12 04:38:16] Connection Error: SQLSTATE[HY000] [1130] Host 'localhost' is not allowed to connect to this MariaDB server
+SQL: N/A
+Params: N/A
+
+[2024-12-12 04:38:54] Connection Error: SQLSTATE[HY000] [1130] Host 'localhost' is not allowed to connect to this MariaDB server
+SQL: N/A
+Params: N/A
+
+[2024-12-12 04:38:56] Connection Error: SQLSTATE[HY000] [1130] Host 'localhost' is not allowed to connect to this MariaDB server
+SQL: N/A
+Params: N/A
+
+[2024-12-16 11:52:16] Connection Error: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+SQL: N/A
+Params: N/A
+

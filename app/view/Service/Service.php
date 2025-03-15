@@ -46,18 +46,15 @@
                 Đừng chần chừ hãy liên hệ GBOX ngay để thực hiện.
             </p>
             <div class="studio-gallery">
-                <div class="studio-gallery-item">
-                    <img src="img/Service/sv-1.png" alt="Living space 1" class="gallery-item">
-                    <p>Chủ đề giáng sinh</p>
-                </div>
-                <div class="studio-gallery-item">
-                    <img src="img/Service/sv-2.png" alt="Living space 2" class="gallery-item">
-                    <p>Chủ đề cặp đôi</p>
-                </div>
-                <div class="studio-gallery-item">
-                    <img src="img/Service/sv-3.png" alt="Living space 3" class="gallery-item">
-                    <p>chủ đề Halloween</p>
-                </div>
+                <?php
+                $serviceTop = $data['TopService'];
+                foreach ($serviceTop as $servive): ?>
+                    <div class="studio-gallery-item">
+                        <img src="img/Service/<?php echo htmlspecialchars($servive['image']); ?>" alt="<?php echo htmlspecialchars($servive['name']); ?>"
+                            class="gallery-item">
+                        <p><?php echo htmlspecialchars($servive['name']); ?></p>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -151,7 +148,8 @@
                     <div class="description">
                         <p class="description-left">
                             Chụp ảnh tại Studio GBox không chỉ đơn thuần là việc ghi lại những khoảnh khắc đẹp mà còn là
-                            hành trình tạo nên những tác phẩm nghệ thuật độc đáo. Với đội ngũ nhiếp ảnh gia chuyên nghiệp và không gian được thiết kế tinh tế, Studio
+                            hành trình tạo nên những tác phẩm nghệ thuật độc đáo. Với đội ngũ nhiếp ảnh gia chuyên
+                            nghiệp và không gian được thiết kế tinh tế, Studio
                             GBox mang đến cho bạn một trải nghiệm chụp ảnh đẳng cấp, từ những buổi chụp chân dung nhẹ
                             nhàng, lãng mạn đến những bộ ảnh theo chủ đề sáng tạo và phá cách.
                         </p>

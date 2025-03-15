@@ -1,3 +1,9 @@
+<?php
+// Lấy thông tin người dùng từ cơ sở dữ liệu
+$userId = $_GET['id'] ?? '';
+$user = $this->userModal->getUserById($userId); // Thêm một phương thức để lấy thông tin người dùng
+?>
+
 <body>
     <section class="edit-user">
         <div class="edit-user__wrapper">
@@ -20,7 +26,7 @@
             </div>
 
 
-            <div class="edit-user__info-grid">
+            <!-- <div class="edit-user__info-grid">
                 <section class="edit-user__personal-info">
                     <label class="edit-user__field-label">User name</label>
                     <input type="text" class="edit-user__field" value="Nguyen Phuong" />
@@ -62,7 +68,49 @@
                             alt="Select role" class="edit-user__select-icon" />
                     </div>
                 </section>
-            </div>
+            </div> -->
+            <form method="POST" action="?action=edit-info-user" enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>" /> <!-- ID người dùng cần chỉnh sửa -->
+
+                <label class="edit-user__field-label">User name</label>
+                <input type="text" name="name" class="edit-user__field" value="<?php echo $user['name']; ?>" />
+
+                <label class="edit-user__field-label">First name</label>
+                <input type="text" name="first_name" class="edit-user__field" value="<?php echo $user['name']; ?>" />
+
+                <label class="edit-user__field-label">Last name</label>
+                <input type="text" name="last_name" class="edit-user__field" value="<?php echo $user['name']; ?>" />
+
+                <label class="edit-user__field-label">DOB</label>
+                <input type="date" name="dob" class="edit-user__field" value="<?php echo $user['date_of_birth']; ?>" />
+
+                <label class="edit-user__field-label">Email</label>
+                <input type="email" name="email" class="edit-user__field" value="<?php echo $user['email']; ?>" />
+
+                <label class="edit-user__field-label">Phone Number</label>
+                <input type="tel" name="phone_number" class="edit-user__field" value="<?php echo $user['phone']; ?>" />
+
+                <h3 class="edit-user__payment-title">Payment Information</h3>
+                <label class="edit-user__field-label">Account holder's name</label>
+                <input type="text" name="account_holder" class="edit-user__field" value="<?php echo $user['name']; ?>" />
+
+                <label class="edit-user__field-label">Account number</label>
+                <input type="text" name="account_number" class="edit-user__field" value="8575555" />
+
+                <label class="edit-user__field-label">SWIFT code</label>
+                <input type="text" name="swift_code" class="edit-user__field" value="187" />
+
+                <label class="edit-user__field-label">Bank</label>
+                <input type="text" name="bank" class="edit-user__field" value="MB Bank" />
+
+                <label class="edit-user__field-label">Role</label>
+                <select name="role" class="edit-user__field">
+                    <option value="user" <?php echo ($user['user_type'] === 'user' ? 'selected' : ''); ?>>User</option>
+                    <option value="admin" <?php echo ($user['user_type'] === 'admin' ? 'selected' : ''); ?>>Admin</option>
+                </select>
+
+                <button type="submit" class="status-completed">Save Changes</button>
+            </form>
         </div>
     </section>
 </body>

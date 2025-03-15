@@ -33,7 +33,7 @@
                     <li><a href="index.php">Trang Chủ</a></li>
                     <li><a href="?page=product_page">Studio</a></li>
                     <li><a href="?page=service_page">Dịch Vụ</a></li>
-                    <li><a href="?page=news">Tin Tức</a></li>
+                    <li><a href="?page=News_page">Tin Tức</a></li>
                     <li><a href="?page=contact_page">Liên Hệ</a></li>
                 </ul>
                 <div class="heading__nav-mobileMenu">
@@ -48,7 +48,7 @@
                             <li><a href="index.php">Trang Chủ</a></li>
                             <li><a href="?page=product_page">Studio</a></li>
                             <li><a href="?page=service_page">Dịch Vụ</a></li>
-                            <li><a href="?page=news">Tin Tức</a></li>
+                            <li><a href="?page=News_page">Tin Tức</a></li>
                             <li><a href="?page=contact_page">Liên Hệ</a></li>
                         </ul>
                     </div>
@@ -66,9 +66,15 @@
                     <img src="img/icon/notice.svg" alt="">
                 </div>
                 <div class="heading__cta-user">
-                    <a href="?page=loginModal">
-                        <img src="img/icon/user.svg" alt="">
-                    </a>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <a href="?page=account_page">
+                            <img src="img/icon/user.svg" alt="">
+                        </a>
+                    <?php else: ?>
+                        <a href="?page=loginModal">
+                            <img src="img/icon/user.svg" alt="">
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

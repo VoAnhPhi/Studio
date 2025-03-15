@@ -6,7 +6,7 @@
             </div>
             <div class="loginModal__content">
                 <div class="content">
-                    <p>Đăng nhập</p>
+                    <p>Đăng nhập Admin</p>
                     <p class="description">GBOX luôn sẵn sàng với căn hộ đầy đủ tiện ích cho bạn!</p>
                 </div>
                 <form action="" class="loginMainForm">
@@ -16,18 +16,8 @@
                     </div>
                     <div class="password">
                         <label for="">Nhập mật khẩu*</label>
-                        <input type="text" placeholder="Nhập mật khẩu">
+                        <input type="password" placeholder="Nhập mật khẩu">
                     </div>
-                    <div class="select-privacy">
-                        <div class="hold-login">
-                            <input type="radio"></input>
-                            <label for="">Duy trì đăng nhập</label>
-                        </div>
-                        <div class="forget-password">
-                            <label for="">Quên mật khẩu?</label>
-                        </div>
-                    </div>
-
                 </form>
                 <div class="button">
                     <button>Đăng Nhập</button>

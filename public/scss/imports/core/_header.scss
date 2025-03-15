@@ -3,6 +3,7 @@
     @include size(100%, 76px);
     background-color: #001F3B;
     z-index: 10000;
+    // display: none;
 
     .container {
         @include mid(true);

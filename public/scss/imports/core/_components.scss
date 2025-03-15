@@ -524,6 +524,10 @@ section {
         }
 
         &-paymentBtn {
+            button {
+                @include text(20px, Lato-B, normal, $white-cl, null);
+            }
+            
             a {
                 @include text(20px, Lato-B, normal, $white-cl, null);
             }
@@ -712,6 +716,58 @@ section {
 
             .panel {
                 @include text(16px, NS-M, normal, $black-cl, null);
+            }
+        }
+    }
+}
+
+.loginModal {
+    &__content {
+        .content {
+            text-align: center;
+
+            p {
+                @include text(24px, NS-B, normal, $btn-cl, null);
+            }
+
+            p.description {
+                @include text(16px, NS-R, normal, #707070, null);
+            }
+        }
+
+        .loginMainForm {
+
+            .user-name,
+            .password {
+                @include text(16px, NS-B, normal, $btn-cl, null);
+
+                input {
+                    @include text(16px, NS-R, normal, #707070, null);
+                }
+            }
+
+            .select-privacy {
+                .hold-login {
+                    @include text(14px, NS-R, normal, #707070, null);
+                }
+
+                .forget-password {
+                    @include text(14px, NS-R, normal, $btn-cl, null);
+                }
+            }
+
+            .button {
+                button {
+                    @include text(18px, Lato-B, normal, $white-cl, null);
+                }
+
+                .sub-btn {
+                    @include text(14px, NS-R, normal, #707070, null);
+
+                    a {
+                        @include text(16px, NS-R, normal, $btn-cl, null);
+                    }
+                }
             }
         }
     }

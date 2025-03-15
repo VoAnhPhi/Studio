@@ -52,7 +52,8 @@
                                 <th scope="col">Service</th>
                                 <th scope="col">Date & Time</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Detail</th>
+                                <th scope="col"></th>
+
                             </tr>
                         </thead>
                         <tbody>

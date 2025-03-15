@@ -1,5 +1,6 @@
 .breadCrumb {
-    padding-top: 20px;
+    padding-top: 24px;
+    padding-bottom: 28px;
 
     &__direction {
         @include mid(true);
@@ -30,9 +31,13 @@
         left: 0;
         bottom: 0;
         width: 50%;
-        height: 60%;
+        height: auto;
         padding: 90px 50px;
         background-color: $white-cl;
+
+        &-title {
+            margin-bottom: 18px;
+        }
 
         //Box Shadow
         box-shadow: -15px 10px 35px 0px rgba(176, 176, 176, 1);

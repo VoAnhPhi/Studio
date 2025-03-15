@@ -1,3 +1,23 @@
+<?php
+$newsController = new NewsController();
+$news = $newsController->listNews();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['btnDeleteNews'])) {
+        $newsController->deleteNews(intval($_POST['post_id']));
+    }
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['editNewsForm'])) {
+        $newsController->editNewsForm(intval($_POST['post_id']));
+        header('Location: NewsUpdate.php');
+        exit;
+    }
+}
+
+
+?>
+
 <body>
     <div class="container">
         <main class="main-content">
@@ -59,77 +79,38 @@
 
                             </tr>
                         </thead>
-                        <?php
-                        // Kết nối cơ sở dữ liệu
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "studio";
-
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-
-                        // Truy vấn dữ liệu
-                        $sql = "SELECT post_id, title, image, views, status, published_date FROM post";
-                        $result = $conn->query($sql) or die("Query failed: " . $conn->error);
-
-                        // Hiển thị dữ liệu
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>
-                                <td><img class='list-product-img' src='lib/upload/news/" . $row['image'] . "' alt=''></td>
-                                <td class='booking-name-studio'>" . $row['views'] . "</td>
-                                <td class='booking-name-studio'>" . $row['title'] . "</td>
-                                <td class='booking-name-studio'>" . $row['status'] . "</td>
-                                <td>" . date('d/m/Y H:i', strtotime($row['published_date'])) . "</td>
-                                <td><a href='?action=edit-post&post_id=" . $row['post_id'] . "' class='view-btn' aria-label='View details'>Edit</a></td>
-                            </tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='5'>Không có bài viết nào</td></tr>";
-                        }
-
-                        $conn->close();
-                        ?>
-
-                        <!-- <tr>
-                                <td class="booking-name-studio">Hãy trải nghiệm...</td>
-                                <td class="booking-name-studio">1.250</td>
-                                <td class="booking-name-studio">---</td>
-                                <td><span class="status-completed">Available</span></td>
-                                <td class="booking-name-studio">---</td>
-                                <td>
-                                    21/09/2024 lúc 8:25 sáng
-                                </td>
-                                <td><button class="view-btn" aria-label="View details"
-                                        onclick="openPopup()">Edit</button></td>
-                            </tr>
-
-                            <tr>
-                                <td class="booking-name-studio">Hãy trải nghiệm...</td>
-                                <td class="booking-name-studio">1.250</td>
-                                <td class="booking-name-studio">---</td>
-                                <td><span class="status-pending">Pending</span></td>
-                                <td class="booking-name-studio">---</td>
-                                <td>
-                                    21/09/2024 lúc 8:25 sáng
-                                </td>
-                                <td><button class="view-btn" aria-label="View details"
-                                        onclick="openPopup()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td class="booking-name-studio">Hãy trải nghiệm...</td>
-                                <td class="booking-name-studio">1.250</td>
-                                <td class="booking-name-studio">---</td>
-                                <td><span class="status-cancelled">Unavailable</span></td>
-                                <td class="booking-name-studio">---</td>
-                                <td>
-                                    21/09/2024 lúc 8:25 sáng
-                                </td>
-                                <td><button class="view-btn" aria-label="View details"
-                                        onclick="openPopup()">Edit</button></td>
-                            </tr> -->
-
-
+                        <tbody>
+                            <?php if (empty($news)): ?>
+                                <tr>
+                                    <td colspan="6">Không có bài viết nào</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($news as $post): ?>
+                                    <tr>
+                                        <td><img class="list-product-img" src="../../app/admin/lib/upload/<?= htmlspecialchars($post['image']) ?>" alt=""></td>
+                                        <td class="booking-name-studio"><?= htmlspecialchars($post['views'] ?? 0) ?></td>
+                                        <td class="booking-name-studio"><?= htmlspecialchars($post['title']) ?></td>
+                                        <td class="booking-name-studio"><?= htmlspecialchars($post['status']) ?></td>
+                                        <td><?= date('d/m/Y H:i', strtotime($post['published_date'])) ?></td>
+                                        <td>
+                                            <!-- <form action="index.php?action=update-news&post_id=<?= $post['post_id'] ?>" method="POST">
+                                                <input type="hidden" name="image" value="<?= htmlspecialchars($post['image']) ?>" required>
+                                                <input type="hidden" name="views" value="<?= htmlspecialchars($post['views']) ?>" required>
+                                                <input type="hidden" name="title" value="<?= htmlspecialchars($post['title']) ?>" required>
+                                                <input type="hidden" name="status" value="<?= htmlspecialchars($post['status']) ?>" required>
+                                                <input type="hidden" name="published_date" value="<?= htmlspecialchars($post['published_date']) ?>" required>
+                                                <button type="submit" name="editNewsForm" class="view-btn">Edit</button>
+                                            </form> -->
+                                            <form method="POST"
+                                                onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
+                                                <input type="hidden" name="post_id"
+                                                    value="<?= htmlspecialchars($post['post_id']) ?>">
+                                                <button type="submit" name="btnDeleteNews" class="view-btn-d">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
 
@@ -181,12 +162,10 @@
 </div>
 
 <script>
-    // Hàm mở popup
     function openPopup() {
         document.getElementById('popup').style.display = 'flex';
     }
 
-    // Hàm đóng popup
     function closePopup() {
         document.getElementById('popup').style.display = 'none';
     }

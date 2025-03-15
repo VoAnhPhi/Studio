@@ -1,3 +1,28 @@
+<?php
+/**
+ * Service Management Page
+ * Handles listing, editing, and deleting services.
+ */
+
+require_once '../../app/admin/controller/ServiceController.php';
+
+$serviceController = new ServiceController();
+$services = $serviceController->listServices();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['btnDeleteService'])) {
+        $serviceController->deleteService(intval($_POST['service_id']));
+    }
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['editServiceForm'])) {
+        $serviceController->editServiceForm(intval($_POST['service_id']));
+        header('Location: EditServices.php');
+        exit;
+    }
+}
+?>
+
 <body>
     <div class="container">
         <main class="main-content">
@@ -27,11 +52,11 @@
                             <div class="active-indicator" aria-hidden="true"></div>
                             <span class="tab-text">List services</span>
                         </a>
-                        <a href="?action=add-services" class="add-product-btn" tabindex="0">
+                        <!-- <a href="?action=add-services" class="add-product-btn" tabindex="0">
                             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b633fdb76f5b691270eead81d21f22c6900577decef1c1f6a355bcc914dbc0e0?placeholderIfAbsent=true&apiKey=c01b0b1f77f44db1a01eba6bb534c16f"
                                 alt="" class="add-icon" />
                             <span>Add New Service</span>
-                        </a>
+                        </a> -->
 
                     </div>
                 </div>
@@ -45,52 +70,64 @@
                                 <th scope="col">Service</th>
                                 <th scope="col">Studio</th>
                                 <th scope="col">Date</th>
+                                <th scope="col">created_at</th>
                                 <th scope="col"></th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "studio";
+                            <?php if (empty($services)): ?>
+                                <tr>
+                                    <td colspan="8">No services found.</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($services as $service): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($service['service_id']) ?></td>
+                                        <td><img src="lib/upload/<?= htmlspecialchars($service['image']) ?>"
+                                                alt="<?= htmlspecialchars($service['name']) ?>" class="list-product-img"></td>
+                                        <td><?= htmlspecialchars($service['name']) ?></td>
+                                        <td><?= htmlspecialchars($service['studio']) ?></td>
+                                        <td><?= htmlspecialchars($service['date']) ?></td>
+                                        <td><?= htmlspecialchars($service['created_at']) ?></td>
+                                        <td><?= number_format($service['price'], 0, ',', '.') ?>đ /ngày</td>
+                                        <td>
+                                            <?= $service['availability'] === 'available' ? '<span class="status-completed">Available</span>' : '<span class="status-pending">Not Available</span>' ?>
+                                        </td>
+                                        <td>
+                                            <form method="POST"
+                                                onsubmit="return confirm('Bạn có chắc chắn muốn xóa danh muc này?');">
+                                                <input type="hidden" name="service_id"
+                                                    value="<?= htmlspecialchars($service['service_id']) ?>">
+                                                <button type="submit" name="btnDeleteService" class="view-btn-d">Delete</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form
+                                                action="index.php?action=update-service&service_id=<?php echo $service['service_id']; ?>"
+                                                method="POST">
+                                                <input type="hidden" name="action" value="editService">
+                                                <input type="hidden" name="service_id"
+                                                    value="<?= htmlspecialchars($service['service_id']) ?>">
 
-                            // Tạo kết nối
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+                                                <input type="hidden" name="serviceName"
+                                                    value="<?= htmlspecialchars($service['name']) ?>" required>
+                                                <input type="hidden" name="servicePrice"
+                                                    value="<?= htmlspecialchars($service['price']) ?>" required>
+                                                <input type="hidden" name="date"
+                                                    value="<?= htmlspecialchars($service['date']) ?>" required>
+                                                <textarea name="serviceDescription" style="display:none;"
+                                                    required><?= htmlspecialchars($service['description']) ?></textarea>
+                                                <input type="hidden" name="created_at"
+                                                    value="<?= htmlspecialchars($service['created_at']) ?>" required>
 
-                            // Kiểm tra kết nối
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
+                                                <input type="hidden" name="mainImage"
+                                                    value="<?= htmlspecialchars($service['image']) ?>">
 
-                            // Truy vấn lấy thông tin dịch vụ
-                            $sql = "SELECT service_id, name,  image, studio, date FROM service";
-                            $result = $conn->query($sql);
-
-                            // Kiểm tra nếu có lỗi trong truy vấn
-                            if (!$result) {
-                                die("Query failed: " . $conn->error); // In ra thông báo lỗi nếu truy vấn thất bại
-                            }
-
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td><img class='list-product-img' src='lib/upload/" . $row['image'] . "' alt=''></td>";
-                                    echo "<td class='booking-name-studio'>" . $row['name'] . "</td>";
-                                    echo "<td>" . date('d/m/Y  H:i ', strtotime($row['date'])) . "</td>";
-                                    echo "<td><a href='?action=edit-services&service_id=" . $row['service_id'] . "' class='view-btn' aria-label='View details'>Edit</a></td>";
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='5'>Không có dịch vụ nào</td></tr>";
-                            }
-
-                            // Đóng kết nối
-                            $conn->close();
-                            ?>
-
-                            <!-- <tr>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
                                 <td><img class="list-product-img" src="../lib/img/img_product.png" alt=""></td>
                                 <td class="booking-name-studio">Dịch vụ chụp ảnh</td>
                                 <td class="booking-name-studio">All</td>
@@ -144,6 +181,8 @@
                                 </td>
                                 <td><a href="?action=edit-services" class="view-btn" aria-label="View details">Edit</a></td>
                             </tr> -->
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
 

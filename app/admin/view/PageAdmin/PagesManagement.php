@@ -74,7 +74,7 @@
                                         onclick="openPopup()">Edit</button></td>
                             </tr>
                             <tr>
-                                <td class="booking-name-studio">Trang chủ</td>
+                                <td class="booking-name-studio">Studio</td>
 
                                 <td class="booking-name-studio">---</td>
 
@@ -85,7 +85,7 @@
                                         onclick="openPopup()">Edit</button></td>
                             </tr>
                             <tr>
-                                <td class="booking-name-studio">Trang chủ</td>
+                                <td class="booking-name-studio">Dịch vụ</td>
 
                                 <td class="booking-name-studio">---</td>
 
@@ -95,7 +95,28 @@
                                 <td><button class="view-btn" aria-label="View details"
                                         onclick="openPopup()">Edit</button></td>
                             </tr>
+                            <tr>
+                                <td class="booking-name-studio">Tin tức</td>
 
+                                <td class="booking-name-studio">---</td>
+
+                                <td>
+                                    21/09/2024 lúc 8:25 sáng
+                                </td>
+                                <td><button class="view-btn" aria-label="View details"
+                                        onclick="openPopup()">Edit</button></td>
+                            </tr>
+                            <tr>
+                                <td class="booking-name-studio">Liên hệ</td>
+
+                                <td class="booking-name-studio">---</td>
+
+                                <td>
+                                    21/09/2024 lúc 8:25 sáng
+                                </td>
+                                <td><button class="view-btn" aria-label="View details"
+                                        onclick="openPopup()">Edit</button></td>
+                            </tr>
 
 
                         </tbody>

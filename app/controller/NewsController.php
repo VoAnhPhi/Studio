@@ -1,48 +1,152 @@
 <?php
-require_once 'app/modal/NewsModal.php';
-
+// require_once "../../base_path.php";
+// require_once '../../app/admin/modal/NewsModal.php';
 class NewsController
 {
-    private $newsCategories;
-    private $newsModel;
-    private $data = [];
-
-    function __construct()
+    private $newsModal;
+    public function __construct()
     {
-        $this->newsCategories = new CategoryModal();
-        $this->newsModel = new NewsModal();
+        $this->newsModal = new NewsModal();
     }
-
-    public function getAllNews()
+    /**
+     * Hiển thị danh sách các bài viết tin tức
+     */
+    public function listNews()
     {
-        $this->data['news'] = $this->newsModel->getAllNews();
-        $this->viewNews($this->data);
-    }
+        $news = $this->newsModal->getAllNews();
 
-    public function viewNewsDetail($newsId)
-    {
-        $newsDetail = $this->newsModel->getNewsById($newsId);
-        if ($newsDetail) {
-            $this->data['newsDetail'] = $newsDetail;
-            require_once 'app/view/DetailNews/NewsDetail.php';
+        if (empty($news)) {
+            return [];
         } else {
-            echo "Không tìm thấy tin tức!";
+            $data = ['news' => $news];
+            $this->renderView('NewsAdmin', 'NewsManagement', $data);
+        }
+        return $news;
+    }
+
+    /**
+     * Hiển thị form thêm mới tin tức
+     */
+    public function addNewsForm()
+    {
+        // Gọi view form thêm tin tức
+        require_once VIEW_PATH . 'NewsAdmin/NewsAdd.php';
+    }
+
+    private function uploadImage($file)
+    {
+        if ($file['error'] === UPLOAD_ERR_OK) {
+            $targetDir = "../../app/admin/lib/upload/";
+            $fileName = uniqid() . "_" . basename($file['name']);
+            $targetFilePath = $targetDir . $fileName;
+
+            if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
+                return $fileName;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Xử lý thêm mới tin tức
+     */
+    public function addNews($data, $files)
+    {
+
+        // Validate input data
+        $title = htmlspecialchars($data['title'] ?? '');
+        $content = htmlspecialchars($data['content'] ?? '');
+        $status = htmlspecialchars($data['status'] ?? 'draft');
+
+        $mainImage = $this->uploadImage($files['mainImage']);
+        // // Nếu bạn có thêm hình ảnh khác, bạn có thể xử lý ở đây
+
+        if (!$mainImage) {
+            echo "Lỗi khi tải lên ảnh chính!";
+            exit;
+        }
+
+        // Prepare data to insert
+        $newsData = [
+            'title' => $title,
+            'content' => $content,
+            'status' => $status,
+            'image' => $mainImage, // Gán hình ảnh đã tải lên
+        ];
+
+        // Gọi model để thêm tin tức mới
+        require_once MODEL_PATH . 'NewsModal.php';
+        $NewsModal = new NewsModal();
+        $result = $NewsModal->addNews($newsData); // Truyền mảng dữ liệu
+
+        if ($result) {
+            header('Location: index.php?action=news');
+            exit();
+        } else {
+            echo "Có lỗi xảy ra khi thêm tin tức!";
         }
     }
 
-    public function viewNews($data)
+    /**
+     * Hiển thị form chỉnh sửa tin tức
+     */
+    public function editNewsForm($id)
     {
-        if (is_array($data)) {
-            require_once 'app/view/News/NewsPage.php';
+        require_once MODEL_PATH . 'NewsModal.php';
+
+        $NewsModal = new NewsModal();
+        $news = $NewsModal->getNewsById($id);
+        if ($news) {
+            $this->renderView('NewsAdmin', 'NewsUpdate', ['news' => $news]);
         } else {
-            echo "Lỗi: Tham số không hợp lệ!";
+            echo "Không tìm thấy sản phẩm!";
         }
     }
 
-    public function news()
+    /**
+     * Xử lý chỉnh sửa tin tức
+     */
+    public function editNews()
     {
-        $this->getAllNews();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'] ?? 0;
+            $title = $_POST['title'] ?? '';
+            $content = $_POST['content'] ?? '';
+            $status = $_POST['status'] ?? 'draft';
+            $author = $_POST['author'] ?? '';
+
+            require_once MODEL_PATH . 'NewsModal.php';
+            $NewsModal = new NewsModal();
+            $result = $NewsModal->updateNews($id, $title, $content, $status, $author);
+
+            if ($result) {
+                header('Location: index.php?action=news-manage');
+                exit();
+            } else {
+                echo "Có lỗi xảy ra khi cập nhật tin tức!";
+            }
+        }
+    }
+
+    /**
+     * Xóa tin tức
+     */
+    public function deleteNews()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnDeleteNews'])) {
+            $newsId = $_POST['post_id'];
+            $result = $this->newsModal->deleteNewsModal($newsId);
+            if ($result) {
+                echo "<script>alert('Tin tức đã được xóa thành công');</script>";
+            } else {
+                echo "<script>alert('Xóa tin tức không thành công');</script>";
+            }
+        }
+    }
+
+    public function renderView($folder, $view, $data = [])
+    {
+        extract($data);
+        require_once("../../app/admin/view/{$folder}/{$view}.php");
     }
 }
-
-?>

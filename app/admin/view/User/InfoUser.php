@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <body>
     <div class="container">
         <main class="main-content">
@@ -35,6 +39,10 @@
                             <div class="active-indicator" aria-hidden="true"></div>
                             <span class="tab-text"></span>
                         </a>
+                        <a href="#upcoming" class="tab-link">
+                            <div class="active-indicator" aria-hidden="true"></div>
+                            <span class="tab-text"></span>
+                        </a>
                     </div>
                 </div>
             </nav>
@@ -54,7 +62,30 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                            // Assuming the controller method 'listUsers' returns an array of users
+                            $userController = new UserController();
+                            $users = $userController->listUsers();
 
+                            // Check if users were returned
+                            if (count($users) > 0) {
+                                foreach ($users as $user) {
+                                    echo "<tr>";
+                                    echo "<td><img class='list-product-img' src='lib/upload/faces/" . $user['image'] . "' alt='User Image'></td>";
+                                    echo "<td class='booking-name-studio'>" . $user['name'] . "</td>";
+                                    echo "<td class='booking-name-studio'>" . $user['email'] . "</td>";
+                                    echo "<td class='booking-name-studio'>" . $user['phone'] . "</td>";
+                                    echo "<td class='booking-name-studio'>" . $user['registration_date'] . "</td>";
+                                    echo "<td class='booking-name-studio'>" . $user['user_type'] . "</td>";
+                                    echo "<td><a href='?action=edit-info-user&id=" . $user['user_id'] . "' class='view-btn' aria-label='Chỉnh sửa người dùng'>Edit</a></td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='7'>No users found</td></tr>";
+                            }
+                            ?>
+
+                            <!-- 
                             <tr>
                                 <td><img class="list-product-img" src="../lib/img/img_product.png" alt=""></td>
                                 <td class="booking-name-studio">Nguyen Phuong</td>
@@ -114,11 +145,11 @@
                                 <td class="booking-name-studio">dsun.agency@gmail.com</td>
                                 <td class="booking-name-studio">0912345678</td>
                                 <td class="booking-name-studio">12/09/2000</td>
-                                <td class="booking-name-studio">User</td>
+                                <td class="booking-name-studio">User</td> -->
 
-                                <td>
+                            <!-- <td>
                                     <a href="?action=edit-info-user" class="view-btn" aria-label="View details">Edit</a>
-                                </td>
+                                </td> -->
                             </tr>
 
 

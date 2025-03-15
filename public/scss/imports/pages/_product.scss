@@ -1,64 +1,59 @@
 body,
 html {
-    margin: 0;
-    padding: 0;
     overflow-x: hidden; /* Ngăn chặn tràn ngang */
 }
 #main__products {
-    padding-top: 82px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $ptop;
-
-    @media (max-width: 768px) {
-        gap: $ptablet;
-    }
-    @media (max-width: 391px) {
-        gap: $pmobile;
-    }
+    padding-top: var(--ptop);
 }
-#link {
-    max-width: 200px;
+
+.link {
+    margin: 24px 28px;
     display: flex;
-    justify-content: center;
-    align-content: center;
-    font-size: 16px;
-    color: #ffdd00;
-    margin-left: 200px;
+    align-items: center;
+
+    @include text(16px, Lato-B, normal, $primary-cl, null);
+
     a {
-        color: #d1d1d1;
-        text-decoration: none;
-    }
-    @media (max-width: 768px) {
-        margin-left: 8px;
+        @include text(16px, Lato-R, normal, #d1d1d1, null);
     }
 
-    @media (max-width: 390px) {
-        margin-left: 9px;
+    img {
+        vertical-align: middle;
+        width: 18px;
+        height: 18px;
     }
 }
+
 #big_title {
     margin: 0 auto;
+    margin-top: 75px;
+    margin-bottom: 30px;
     width: 45%;
     text-align: center;
+    margin-bottom: 40px;
     @include text(40px, Lato-B, normal, $btn-cl, null);
-    // @media (max-width: 768px) {
-    //     width: 90%;
-    // }
-    @media (max-width: 390px) {
+
+    @media (max-width: 391px) {
         @include text(10px, Lato-B, normal, $btn-cl, null);
+        width: 100%;
         width: 10%;
     }
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 }
+
 .product-page-studio-img {
     width: 100%;
     height: 380px;
     overflow: hidden;
 }
+
 .swiper-container {
     width: 100%;
     height: 100%;
 }
+
 .swiper-slide {
     width: 30%;
     height: 10%;
@@ -68,10 +63,12 @@ html {
     padding: 0 5px;
     flex-shrink: 0;
 }
+
 .swiper-slide img {
     width: 100%;
     height: 80%;
     object-fit: cover;
+
     // border-radius: 10px;
     @media (max-width: 768px) {
         width: 100%;
@@ -79,9 +76,17 @@ html {
 }
 
 #high_rate {
+    padding-top: var(--ptop);
     display: grid;
     grid-template-columns: 1fr;
     gap: 60px;
+
+    @media (max-width: 391px) {
+        &:last-child {
+            display: none;
+        }
+    }
+
     a {
         text-decoration: none;
         color: white;
@@ -110,10 +115,14 @@ html {
                     visibility 0.3s ease;
                 opacity: 1;
                 visibility: visible;
+                height: 350px;
+                max-width: 350px;
 
                 img {
+                    height: 100%;
+                    object-fit: cover;
                     width: 100%;
-                    max-width: 800px;
+                    // max-width: 800px;
                 }
 
                 .info {
@@ -150,15 +159,18 @@ html {
                             color: #888;
                         }
                     }
+
                     @media (max-width: 768px) {
                         width: 100%;
-                        height: 50%;
+
                         .type {
                             display: none;
                         }
+
                         .name {
                             margin-bottom: 0px;
                         }
+
                         .rate {
                             .star img {
                                 width: 46px;
@@ -172,10 +184,11 @@ html {
             .hidden_seen {
                 display: none;
                 width: 100%;
-                height: auto;
+                height: 350px;
                 position: absolute;
                 background-color: #fff;
                 padding: 10px;
+                padding-top: 15px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                 border-radius: 10px;
                 text-align: center;
@@ -183,37 +196,44 @@ html {
                 opacity: 0;
                 visibility: hidden;
                 transition:
-                    opacity 0.3s ease,
-                    visibility 0.3s ease;
+                    opacity 0.7s ease,
+                    visibility 2.7s ease;
                 bottom: -5%;
 
                 .content {
                     display: flex;
-                    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
-                    justify-content: center; /* Căn giữa nội dung theo chiều dọc */
-                    align-items: center; /* Căn giữa nội dung theo chiều ngang */
-                    gap: 10px; /* Thêm khoảng cách giữa các phần tử */
-                    width: 100%; /* Đảm bảo mở rộng đầy đủ chiều rộng */
-                    padding: 10px; /* Giữ khoảng cách hợp lý bên trong */
-                    box-sizing: border-box; /* Đảm bảo padding không làm tràn nội dung */
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                    width: 100%;
+                    padding: 10px;
+                    box-sizing: border-box;
+
                     .title {
                         @include text(30px, Lato-B, normal, $btn-cl, null);
                     }
+
                     .desc {
                         @include text(16px, NS-R, normal, $desc, null);
+                        margin-top: 20px;
                     }
+
                     .number_info {
+                        width: 100%;
                         display: flex;
                         justify-content: space-around;
 
                         .first_num {
                             padding: 0 20px;
                             @include text(40px, Lato-B, normal, $frst_num, null);
+
                             .desc_num {
                                 @include text(12px, Lato-B, normal, $dsc_num, null);
                             }
                         }
                     }
+
                     button {
                         width: 127px;
                         height: 40px;
@@ -222,32 +242,34 @@ html {
                         @include text(18px, Lato-B, normal, $white-cl, null);
 
                         &:hover {
+                            transition: 0.15s linear;
                             background-color: $primary-cl;
                             border: 1px solid $primary-cl;
                         }
                     }
                 }
+
                 @media (max-width: 768px) {
                     width: 100%;
-                    height: 100%;
-
+                    height: 70%;
+                    padding: 0;
                     .content {
+                        height: 90%;
                         .title {
                             height: 30%;
                         }
+
                         .desc {
                             display: none;
                         }
+
                         .number_info {
                             height: 30%;
+
                             .first_num {
-                                // width: 100%;
                                 padding: 0 5px;
                                 @include text(32px, Lato-B, normal, $frst_num, null);
                             }
-                        }
-                        button {
-                            height: 30%;
                         }
                     }
                 }
@@ -270,7 +292,7 @@ html {
 }
 
 #product_list {
-    margin-top: 100px;
+    margin-top: 175px;
 
     a {
         text-decoration: none;
@@ -281,6 +303,7 @@ html {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: nowrap;
         margin-bottom: 24px;
 
         nav ul {
@@ -290,10 +313,11 @@ html {
             margin: 0;
 
             li {
-                @include text(13px, Lato-R, normal, $quantity, null);
+                @include text(20px, Lato-R, normal, $quantity, null);
                 margin-right: 24px;
                 cursor: pointer;
                 transition: color 0.3s;
+                white-space: nowrap;
 
                 &:hover {
                     color: #ff9900;
@@ -308,6 +332,7 @@ html {
                 display: none;
             }
         }
+
         nav ul li.active::after,
         .dropdown-menu .dropdown-item.active::after {
             content: none;
@@ -317,18 +342,18 @@ html {
             background-color: #fff;
             color: #1d2a3b;
             border-bottom: 1px solid #1d2a3b;
-            transform: translateY(-5px);
+            transform: translateY(-2px);
             transition: 0.1s ease-in;
             padding-bottom: 2px;
             height: fit-content;
         }
+
         .dropdown-menu .dropdown-item.active {
-            background-color: #fff;
+            background-color: #c9dee8;
             color: #1d2a3b;
-            border-bottom: 1px solid #1d2a3b;
             transform: translateY(-5px);
             transition: 0.1s ease-in;
-            padding-bottom: 2px;
+
             height: fit-content;
         }
 
@@ -423,7 +448,8 @@ html {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 24px;
-        grid-auto-rows: 440px; /* Quy định chiều cao các ô */
+        grid-auto-rows: 440px;
+        /* Quy định chiều cao các ô */
 
         .item {
             background-color: #fff;
@@ -445,6 +471,7 @@ html {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+
                 .name {
                     @include text(21px, Lato-B, normal, $btn-cl, null);
                 }
@@ -475,6 +502,7 @@ html {
                 font-size: 14px;
                 position: absolute;
                 bottom: 50px;
+
                 img {
                     width: 16px;
                     height: 16px;
@@ -511,6 +539,7 @@ html {
                     border-radius: 8px;
                     cursor: pointer;
                     transition: background-color 0.3s;
+
                     &:hover {
                         background-color: $primary-cl;
                         border: 1px solid $primary-cl;
@@ -534,39 +563,56 @@ html {
         img {
             width: 16px;
             height: 16px;
-            margin-left: 8px;
+            margin-top: 8px;
             transition: transform 0.3s;
         }
     }
 }
 
-#hint {
-    h3 {
-        @include text(32px, Lato-B, normal, $btn-cl, null);
-        text-align: center;
-        margin-bottom: 60px;
-    }
-    .swiper-hint-container {
-        width: 100%;
-
-        .swiper-hint-wrapper {
+.similar__studios {
+    margin-top: 100px;
+    .similar__studios-list {
+        h3 {
+            text-align: center;
+            margin-bottom: 60px;
+            @include text(32px, Lato-B, normal, $btn-cl, null);
+        }
+        .swiper-hint-container {
             display: flex;
-            gap: 40px;
-            align-items: center;
+            margin: 0 auto;
+            max-width: calc(100% - 200px);
+            justify-content: center;
+            @media (max-width: 768px) {
+                max-width: 100%;
+            }
 
-            .swiper-hint-slide {
+            .swiper-hint-wrapper {
                 display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+                gap: 20px;
 
-            .swiper-hint-slide:nth-child(2) img,
-            .swiper-hint-slide:nth-child(4) img {
-                width: 90%;
-            }
-            .swiper-hint-slide:first-child img,
-            .swiper-hint-slide:last-child img {
-                width: 75%;
+                .swiper-hint-slide {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .swiper-hint-slide:nth-child(2) img,
+                .swiper-hint-slide:nth-child(4) img {
+                    width: 90%;
+                }
+
+                .swiper-hint-slide:first-child img,
+                .swiper-hint-slide:last-child img {
+                    width: 80%;
+                }
+
+                .swiper-hint-slide:last-child {
+                    margin-left: -25px;
+                }
+
+                .swiper-hint-slide:first-child {
+                    margin-right: -25px;
+                }
             }
         }
     }
@@ -614,6 +660,8 @@ html {
     background-color: #d9d9d9;
     padding: 0 75px 0 75px;
     border-radius: 20px;
+    margin-top: 100px;
+
     .title {
         padding-top: 37px;
         margin: 0 auto;
@@ -637,6 +685,7 @@ html {
             @include text(20px, NS-R, normal, $btn-cl, null);
         }
     }
+
     @media (max-width: 768px) {
         .title {
             width: 94%;
@@ -714,7 +763,10 @@ html {
 .container {
     gap: $ptop;
 }
+
 .support {
+    margin-bottom: 80px;
+
     &__heading {
         hr {
             width: 20%;

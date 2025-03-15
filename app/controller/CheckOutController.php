@@ -1,50 +1,84 @@
 <?php
-require_once 'app/modal/CheckOutModal.php';
+require_once 'app/modal/ProductModal.php';
 
 class CheckoutController
 {
-    private $db;
+    private $productModal;
 
     public function __construct()
     {
-        $this->db = new Database(); // Kết nối đến Database khi khởi tạo lớp
+        $this->productModal = new ProductModal();
     }
 
-    public function addOrder()
+    /**
+     * Hàm render view
+     * @param string $view Tên file view
+     * @param array $data Dữ liệu truyền vào view
+     */
+    private function renderView($view, $data = [])
     {
-        // Kiểm tra và lấy thông tin người dùng từ session
-        if (!isset($_SESSION['objuser']['user_id'])) {
-            // Xử lý nếu người dùng chưa đăng nhập (tuỳ vào ứng dụng của bạn)
-            return false;
+        $view = 'app/view/' . $view . '.php';
+        if (file_exists($view)) {
+            extract($data);
+            require_once $view;
+        } else {
+            echo "View không tồn tại!";
+        }
+    }
+
+    /**
+     * Hiển thị trang thanh toán
+     * @param int $id ID sản phẩm
+     */
+    public function showCheckoutPage($id)
+    {
+        $product = $this->productModal->getProductById($id);
+        if ($product) {
+            $this->renderView('CheckOutPage/CheckOutPage', ['product' => $product]);
+        } else {
+            echo 'Sản phẩm không tồn tại!';
+        }
+    }
+
+    /**
+     * Xử lý đặt phòng
+     */
+    public function processBooking()
+    {
+        session_start();
+
+        // Kiểm tra người dùng đã đăng nhập
+        if (!isset($_SESSION['user'])) {
+            header("Location: index.php?page=login");
+            exit();
         }
 
-        // Thêm vào bảng orders
-        $sql = "INSERT INTO orders (`is_paid`, `payment_method`, `user_id`) 
-                VALUES (0, :payment_method, :user_id)";
-        $params = [
-            ':payment_method' => 'Cash', // Hoặc lấy từ form POST nếu có
-            ':user_id' => $_SESSION['objuser']['user_id']
-        ];
+        // Kiểm tra yêu cầu POST
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $checkin = $_POST['checkin'];
+            $checkout = $_POST['checkout'];
+            $rooms = $_POST['rooms'];
+            $adults = $_POST['adults'];
+            $children = $_POST['children'];
+            $service = $_POST['service'];
 
-        $orderId = $this->db->insert($sql, $params); // Gọi phương thức insert và lấy ID đơn hàng mới
+            // Tính tổng tiền
+            $totalPrice = $this->productModal->calculatePrice($checkin, $checkout, $rooms, $service);
 
-        // Kiểm tra nếu giỏ hàng có sản phẩm
-        if (isset($_SESSION['cart'])) {
-            // Duyệt qua giỏ hàng và thêm chi tiết vào bảng orders_detail
-            foreach ($_SESSION['cart'] as $id => $item) {
-                $sqlDetail = "INSERT INTO orders_detail (`amount`, `order_id`, `product_id`) 
-                              VALUES (:amount, :order_id, :product_id)";
-                $paramsDetail = [
-                    ':amount' => $item['price'],
-                    ':order_id' => $orderId,
-                    ':product_id' => $id
-                ];
-                $this->db->insert($sqlDetail, $paramsDetail); // Thực thi câu lệnh insert cho từng sản phẩm
-            }
-            // Xóa giỏ hàng sau khi thêm vào cơ sở dữ liệu
-            unset($_SESSION['cart']);
+            // Lưu thông tin đặt phòng vào session
+            $_SESSION['booking_data'] = [
+                'checkin' => $checkin,
+                'checkout' => $checkout,
+                'rooms' => $rooms,
+                'adults' => $adults,
+                'children' => $children,
+                'service' => $service,
+                'totalPrice' => $totalPrice,
+            ];
+
+            // Chuyển hướng đến trang thanh toán
+            header("Location: index.php?page=checkout_page&id=" . $_POST['product_id']);
+            exit();
         }
-
-        return $orderId; // Trả về ID của đơn hàng mới tạo
     }
 }

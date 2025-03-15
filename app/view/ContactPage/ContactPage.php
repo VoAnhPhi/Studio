@@ -1,9 +1,9 @@
 <main class="mainwrapper">
-    <section class="contactTitle --ptop">
+    <section class="contactTitle">
         <div class="container">
             <div class="contactTitle__heading">
                 <div class="contactTitle__heading-user">
-                    Xin chào bạn Tân
+                    Xin chào bạn
                 </div>
                 <h3 class="contactTitle__heading-title">
                     Chúng tôi có thể giúp gì cho bạn?

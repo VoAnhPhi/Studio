@@ -1,3 +1,19 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $bookingData = [
+        'checkin' => $_POST['checkin'],
+        'checkout' => $_POST['checkout'],
+        'rooms' => $_POST['rooms'],
+        'adults' => $_POST['adults'],
+        'children' => $_POST['children'],
+        'service' => $_POST['service'],
+    ];
+
+    $_SESSION['booking_data'] = $bookingData;
+    header('Location: index.php?page=checkout_page');
+    exit();
+}
+?>
 <main class="product_details">
     <section class="link">
         <div class="container">
@@ -5,28 +21,32 @@
             <img src="img/icon/arrow-right-2.svg" alt="arrow">
             <a href="#">Studio</a>
             <img src="img/icon/arrow-right-2.svg" alt="arrow">
-            Four Seasons Studio
+            <?php echo htmlspecialchars($data['productId']['name']); ?>
         </div>
     </section>
 
     <section class="banner">
         <div class="overlay">
-            <h1>Four Seasons Studio</h1>
-            <p><img src="img/icon/map-pin.svg" alt="">Điện Bàn, Quảng Nam</p>
+            <h1><?php echo htmlspecialchars($data['productId']['name']); ?></h1>
+            <p><img src="img/icon/map-pin.svg" alt=""><?= htmlspecialchars($data['productId']['location']); ?></p>
         </div>
         <div class="banner__details swiper mySwiperProduct">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="img/product-details/banner-1.png" alt="Four Seasons Studio" class="banner-img">
+                    <img src="img/product-details/<?= htmlspecialchars($data['productId']['image']); ?>"
+                        alt="<?= htmlspecialchars($data['productId']['name']); ?>" class="banner-img">
                 </div>
                 <div class="swiper-slide">
-                    <img src="img/product-details/banner-2.png" alt="Four Seasons Studio" class="banner-img">
+                    <img src="img/product-details/banner-2.png"
+                        alt="<?= htmlspecialchars($data['productId']['name']); ?>" class="banner-img">
                 </div>
                 <div class="swiper-slide">
-                    <img src="img/product-details/banner-3.png" alt="Four Seasons Studio" class="banner-img">
+                    <img src="img/product-details/banner-3.png"
+                        alt="<?= htmlspecialchars($data['productId']['name']); ?>" class="banner-img">
                 </div>
                 <div class="swiper-slide">
-                    <img src="img/product-details/banner-4.png" alt="Four Seasons Studio" class="banner-img">
+                    <img src="img/product-details/banner-4.png"
+                        alt="<?= htmlspecialchars($data['productId']['name']); ?>" class="banner-img">
                 </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -38,7 +58,7 @@
             <div class="room">
                 <div class="room__info">
                     <div class="room__info-title">
-                        <h1>Four Seasons Studio</h1>
+                        <h1><?= htmlspecialchars($data['productId']['name']); ?></h1>
                         <p class="room__info-rating">
                             <img src="img\icon\Vector.svg" alt="">
                             <img src="img\icon\Vector.svg" alt="">
@@ -60,18 +80,19 @@
                     <div class="room-price">
                         <span class="per-date">/ Ngày</span>
                         <span class="currency"> ₫</span>
-                        <span>1.250.000 </span>
+                        <span><?= number_format($data['productId']['price'], 0, ',', '.'); ?> ₫</span>
                     </div>
                     <div class="description-block">
                         <p class="title">
                             Luôn có nhiều điều thú vị để khám phá khỏi phòng và suite tuyệt đẹp tại
-                            Four Seasons Studio.
+                            <?php echo htmlspecialchars($data['productId']['name']); ?>
                         </p>
                         <p class="description">
-                            <span>Four Seasons Studio</span>
+                            <span><?php echo htmlspecialchars($data['productId']['name']); ?></span>
                             là không gian lý tưởng với cửa sổ kính suốt từ trần đến sàn, mở tầm nhìn
                             tuyệt đẹp ra đại dương. Mỗi phòng và căn hộ đều được thiết kế tinh tế, hoàn hảo với những
-                            chi tiết sang trọng độc đáo mà chỉ có tại <span>Four Seasons Studio</span>
+                            chi tiết sang trọng độc đáo mà chỉ có tại
+                            <span><?php echo htmlspecialchars($data['productId']['name']); ?></span>
 
                         </p>
                         <p class="description">
@@ -108,29 +129,29 @@
                 <div class="booking">
                     <div class="booking-form">
                         <h2>ĐẶT TRƯỚC</h2>
-                        <form>
+                        <form action="index.php?page=booking" class="loginMainForm" method="post">
                             <div class="input_flex">
                                 <p>Ngày nhận phòng</p>
-                                <input type="date" id="checkin" name="checkin" placeholder="Ngày nhận phòng">
+                                <input type="date" id="checkin" name="checkin" placeholder="Ngày nhận phòng" required>
                             </div>
                             <div class="input_flex">
                                 <p>Ngày trả phòng</p>
-                                <input type="date" id="checkout" name="checkout">
+                                <input type="date" id="checkout" name="checkout" required>
                             </div>
-                            <select id="rooms" name="rooms">
+                            <select id="rooms" name="rooms" required>
                                 <option value="" disabled selected>Phòng</option>
                                 <option>1 Phòng</option>
                                 <option>2 Phòng</option>
                                 <option>3 Phòng</option>
                             </select>
                             <div class="form__adults">
-                                <select id="adults" name="adults">
+                                <select id="adults" name="adults" required>
                                     <option value="" disabled selected>Người lớn</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
-                                <select id="children" name="children">
+                                <select id="children" name="children" required>
                                     <option value="" disabled selected>Trẻ nhỏ</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
@@ -139,14 +160,17 @@
                             </div>
 
                             <h2>CHỌN DỊCH VỤ</h2>
-                            <select id="service" name="service">
+                            <select id="service" name="service" required>
+                                <option>Phòng để ở</option>
                                 <option>Chủ đề giáng sinh</option>
                                 <option>Chủ đề cặp đôi</option>
                                 <option>chủ đề Halloween</option>
                             </select>
 
-                            <div class="button">
-                                <a href="#">Đặt phòng<img src="img/icon/Union.svg" alt=""></a>
+                            <div class="button" type="submit">
+                                <a
+                                    href="?page=checkout_page&id=<?= htmlspecialchars($data['productId']['product_id']); ?>">Đặt
+                                    phòng<img src="img/icon/Union.svg" alt=""></a>
                             </div>
                         </form>
                     </div>
@@ -222,13 +246,14 @@
         </div>
         <div class="welcome-header">
             <h2>Chào mừng đến với</h2>
-            <h2>Four Seasons Studio</h2>
+            <h2><?php echo htmlspecialchars($data['productId']['name']); ?></h2>
         </div>
         <div class="container">
             <div class="content">
                 <div class="text-image-block">
                     <div class="text-block">
-                        <h3>Four Seasons Studio là lựa chọn lý tưởng cho concept ý tưởng đầy sáng tạo</h3>
+                        <h3><?php echo htmlspecialchars($data['productId']['name']); ?> là lựa chọn lý tưởng cho concept
+                            ý tưởng đầy sáng tạo</h3>
                         <p>
                             Căn hộ studio là địa điểm lý tưởng cho việc quay video hoặc ảnh sáng tự nhiên và không gian
                             yên
@@ -240,13 +265,15 @@
                         </p>
                     </div>
                     <div class="image-block">
-                        <img src="img/product-details/product-img-1.png" alt="Four Seasons Studio view">
+                        <img src="img/product-details/product-img-1.png"
+                            alt="<?php echo htmlspecialchars($data['productId']['name']); ?> view">
                     </div>
                 </div>
 
                 <div class="text-image-block reverse">
                     <div class="image-block">
-                        <img src="img/product-details/product-img-2.png" alt="Four Seasons Studio interior">
+                        <img src="img/product-details/product-img-2.png"
+                            alt="<?php echo htmlspecialchars($data['productId']['name']); ?> interior">
                     </div>
                     <div class="text-block">
                         <h3>Căn phòng hoàn hảo cho mọi concept chụp ảnh.</h3>
@@ -267,8 +294,9 @@
 
     <section class="studio-section">
         <div class="container">
-            <h1 class="studio-title">Four Seasons Studio</h1>
-            <p class="studio-quote">"Không chỉ là không gian sống, Four Seasons Studio còn mang lại nguồn cảm hứng bất
+            <h1 class="studio-title"><?php echo htmlspecialchars($data['productId']['name']); ?></h1>
+            <p class="studio-quote">"Không chỉ là không gian sống,
+                <?php echo htmlspecialchars($data['productId']['name']); ?> còn mang lại nguồn cảm hứng bất
                 tận"
             </p>
             <div class="studio-gallery">
